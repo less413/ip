@@ -1,20 +1,22 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Dog {
     public static void main(String[] args) {
-        String line = "    ____________________________________________________________\n";
-        String banner = "        _____                \n"
-                + "        |  __ \\  ____   ___ _ \n"
-                + "        | |  | |/ __ \\ / __' |\n"
-                + "        | |  | | |  | | |__| |\n"
-                + "        | |__| | |__| |\\___  |\n"
-                + "        |_____/ \\____/ ____/ |\n"
-                + "                       \\____/ \n";
-        String greeting = "      WOOF WOOF! How can I help? WOOF!";
+        String line = "____________________________________________________________";
+        String banner = "      _____                \n"
+                + "      |  __ \\  ____   ___ _ \n"
+                + "      | |  | |/ __ \\ / __' |\n"
+                + "      | |  | | |  | | |__| |\n"
+                + "      | |__| | |__| |\\___  |\n"
+                + "      |_____/ \\____/ ____/ |\n"
+                + "                     \\____/ \n";
+        String greeting = "WOOF WOOF How can I help? WOOF";
 
         System.out.println(banner);
         System.out.println(greeting);
         System.out.println(line);
+        System.out.println("\n");
         
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
@@ -24,12 +26,13 @@ public class Dog {
             System.out.println(line);
 
             if (input.equalsIgnoreCase("bye")) {
-                System.out.println("      Bye. Hope to see you again soon!");
+                System.out.println("WOOF Goodbye! WOOF WOOF");
                 System.out.println(line);
                 break;
             } else {
-                System.out.println("      " + input);
+                System.out.println(input);
                 System.out.println(line);
+                System.out.println("\n");
             }
         }
     }
