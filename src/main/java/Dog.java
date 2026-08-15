@@ -59,17 +59,17 @@ public class Dog {
                     if (index >= 0 && index < taskList.size()) {
                         Task taskToMark = taskList.get(index);
                         taskToMark.markAsDone();
-                        System.out.println("     WOOF! I've marked this task as done:");
-                        System.out.println("       " + taskToMark);
+                        System.out.println("WOOF! I've marked this task as done:");
+                        System.out.println("" + taskToMark);
                         System.out.println(line);
                         System.out.println("\n");
                     } else {
-                        System.out.println("     Error: Task index out of bounds.");
+                        System.out.println("Error: Task index out of bounds.");
                         System.out.println(line);
                         System.out.println("\n");
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("     Error: Please provide a valid task number (e.g., 'mark 2').");
+                    System.out.println("Error: Please provide a valid task number (e.g., 'mark 2').");
                     System.out.println(line);
                     System.out.println("\n");
                 }
