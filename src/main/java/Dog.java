@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Dog {
-    private static ArrayList<String> taskList = new ArrayList<String>();
+    private static ArrayList<Task> taskList = new ArrayList<Task>();
 
     private static void displayTaskList() {
         for (int i = 0; i < taskList.size(); i++) {
@@ -45,8 +45,9 @@ public class Dog {
                 System.out.println("\n");
             } else {
                 // Add task to list
-                taskList.add(input);
-                System.out.println("added: " + input);
+                Task newTask = new Task(input);
+                taskList.add(newTask);
+                System.out.println("WOOF! I've added a new task: \n" + newTask);
                 System.out.println(line);
                 System.out.println("\n");
             }
