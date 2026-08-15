@@ -2,6 +2,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Dog {
+    private static ArrayList<String> taskList = new ArrayList<String>();
+
+    private static void displayTaskList() {
+        for (int i = 0; i < taskList.size(); i++) {
+            System.out.println((i + 1) + ". " + taskList.get(i));
+        }
+    }
+
     public static void main(String[] args) {
         String line = "____________________________________________________________";
         String banner = "      _____                \n"
@@ -26,11 +34,19 @@ public class Dog {
             System.out.println(line);
 
             if (input.equalsIgnoreCase("bye")) {
+                // Say goodbye and exit
                 System.out.println("WOOF Goodbye! WOOF WOOF");
                 System.out.println(line);
                 break;
+            } else if (input.equalsIgnoreCase("list")) {
+                // Print list of tasks
+                displayTaskList();
+                System.out.println(line);
+                System.out.println("\n");
             } else {
-                System.out.println(input);
+                // Add task to list
+                taskList.add(input);
+                System.out.println("added: " + input);
                 System.out.println(line);
                 System.out.println("\n");
             }
