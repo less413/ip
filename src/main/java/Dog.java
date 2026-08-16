@@ -73,11 +73,30 @@ public class Dog {
                     System.out.println(line);
                     System.out.println("\n");
                 }
-            } else {
-                // Add task to list if the input is just a description
-                Task newTask = new Task(input);
+            } else if (input.toLowerCase().startsWith("todo ")) {
+                // Create new Todo task
+                Task newTask = Todo.parse(input.substring(5));
                 taskList.add(newTask);
                 System.out.println("WOOF! I've added a new task: \n" + newTask);
+                System.out.println(line);
+                System.out.println("\n");
+            } else if (input.toLowerCase().startsWith("deadline ")) {
+                // Create new Deadline task
+                Task newTask = Deadline.parse(input.substring(9));
+                taskList.add(newTask);
+                System.out.println("WOOF! I've added a new task: \n" + newTask);
+                System.out.println(line);
+                System.out.println("\n");
+            } else if (input.toLowerCase().startsWith("event ")) {
+                // Create new Event task
+                Task newTask = Event.parse(input.substring(6));
+                taskList.add(newTask);
+                System.out.println("WOOF! I've added a new task: \n" + newTask);
+                System.out.println(line);
+                System.out.println("\n");
+            } else {
+                // Do nothing
+                System.out.println("WOOF WOOF I don't understand this :(\n" );
                 System.out.println(line);
                 System.out.println("\n");
             }
