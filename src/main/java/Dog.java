@@ -63,19 +63,19 @@ public class Dog {
                     } catch (NumberFormatException e) {
                         System.out.println("Error: Please provide a valid task number (e.g., 'mark 2').");
                     }
-                } else if (input.toLowerCase().startsWith("todo ")) {
+                } else if (input.toLowerCase().startsWith("todo")) {
                     // Create new Todo task
-                    Task newTask = Todo.parse(input.substring(5));
+                    Task newTask = Todo.parse(input.substring(4));
                     taskList.add(newTask);
                     System.out.println("WOOF! I've added a new task: \n" + newTask);
-                } else if (input.toLowerCase().startsWith("deadline ")) {
+                } else if (input.toLowerCase().startsWith("deadline")) {
                     // Create new Deadline task
-                    Task newTask = Deadline.parse(input.substring(9));
+                    Task newTask = Deadline.parse(input.substring(8));
                     taskList.add(newTask);
                     System.out.println("WOOF! I've added a new task: \n" + newTask);
-                } else if (input.toLowerCase().startsWith("event ")) {
+                } else if (input.toLowerCase().startsWith("event")) {
                     // Create new Event task
-                    Task newTask = Event.parse(input.substring(6));
+                    Task newTask = Event.parse(input.substring(5));
                     taskList.add(newTask);
                     System.out.println("WOOF! I've added a new task: \n" + newTask);
                 } else {
