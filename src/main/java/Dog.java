@@ -36,9 +36,9 @@ public class Dog {
         while (scanner.hasNextLine()) {
             try {
                 String input = scanner.nextLine().trim();
-                if (input.isEmpty()) continue;
-
-                if (input.equalsIgnoreCase("bye")) {
+                if (input.isEmpty()) {
+                    System.out.println("...say something? woof...");
+                } else if (input.equalsIgnoreCase("bye")) {
                     // Say goodbye and exit
                     System.out.println("WOOF Goodbye! WOOF WOOF");
                     break;
