@@ -41,7 +41,6 @@ public class Dog {
                 if (input.equalsIgnoreCase("bye")) {
                     // Say goodbye and exit
                     System.out.println("WOOF Goodbye! WOOF WOOF");
-                    System.out.println(line);
                     break;
                 } else if (input.equalsIgnoreCase("list")) {
                     // Print list of tasks
@@ -56,7 +55,7 @@ public class Dog {
                             Task taskToMark = taskList.get(index);
                             taskToMark.markAsDone();
                             System.out.println("WOOF! I've marked this task as done:");
-                            System.out.println("" + taskToMark);
+                            System.out.println(" " + taskToMark);
                         } else {
                             throw new DogException("Task index out of bounds.");
                         }
