@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Dog {
     private static ArrayList<Task> taskList = new ArrayList<Task>();
+    private static final Storage storage = new Storage("./data/dog.txt");
 
     /**
      * Displays the current tasks in the list.
@@ -63,7 +64,9 @@ public class Dog {
         System.out.println(greeting);
         System.out.println(line);
 
+        taskList = storage.load();
         Scanner scanner = new Scanner(System.in);
+
         while (scanner.hasNextLine()) {
             try {
                 String input = scanner.nextLine().trim();
@@ -80,6 +83,7 @@ public class Dog {
 
                     switch (command) {
                         case BYE:
+                            storage.save(taskList);
                             System.out.println("WOOF Goodbye! WOOF WOOF");
                             scanner.close();
                             return;
@@ -103,6 +107,7 @@ public class Dog {
                             } catch (NumberFormatException e) {
                                 throw new DogException("Please provide a valid task number. (e.g., 'mark 2').");
                             }
+                            storage.save(taskList);
                             break;
                         case DELETE:
                             // Handle marking a task as done: "mark <index>"
@@ -113,31 +118,36 @@ public class Dog {
                                     Task deletedTask = taskList.remove(index);
                                     System.out.println("WOOF! I've deleted this task:");
                                     System.out.println(" " + deletedTask);
-                                    System.out.println("You have " + taskList.size() + " tasks left in your list! WOOF!");
+                                    System.out.println("You have " + taskList.size()
+                                            + " tasks left in your list! WOOF!");
                                 } else {
                                     throw new DogException("Task index out of bounds.");
                                 }
                             } catch (NumberFormatException e) {
                                 throw new DogException("Please provide a valid task number. (e.g., 'delete 2').");
                             }
+                            storage.save(taskList);
                             break;
                         case TODO:
                             // Create new Todo task
                             Task newTodo = Todo.parse(rest);
                             taskList.add(newTodo);
                             System.out.println("WOOF! I've added a new task: \n" + newTodo);
+                            storage.save(taskList);
                             break;
                         case DEADLINE:
                             // Create new Deadline task
                             Task newDeadline = Deadline.parse(rest);
                             taskList.add(newDeadline);
                             System.out.println("WOOF! I've added a new task: \n" + newDeadline);
+                            storage.save(taskList);
                             break;
                         case EVENT:
                             // Create new Event task
                             Task newEvent = Event.parse(rest);
                             taskList.add(newEvent);
                             System.out.println("WOOF! I've added a new task: \n" + newEvent);
+                            storage.save(taskList);
                             break;
                     }
                 }
