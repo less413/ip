@@ -22,6 +22,19 @@ public class Event extends Task {
         return String.format("E | %s | %s | %s | %s", getStatusIcon(), description, from, to);
     }
 
+    public static Event fromSaveFormat(String saveString) {
+        String[] parts = saveString.split(" \\| ", 5);
+        if (parts.length < 5) return null;
+
+        String statusIcon = parts[1].trim();
+        String description = parts[2].trim();
+        String from = parts[3].trim();
+        String to = parts[4].trim();
+        boolean isDone = statusIcon.equals("X");
+
+        return new Event(description, from, to, isDone);
+    }
+
     public static Event parse(String input) throws DogException {
         String BAD_INPUT_MSG = "Event tasks must have a description, a start date, and an end date!\n"
                 + "Expected: event <description> /from <start date> /to <end date>";

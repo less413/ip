@@ -15,6 +15,17 @@ public class Todo extends Task {
         return String.format("T | %s | %s", getStatusIcon(), description);
     }
 
+    public static Todo fromSaveFormat(String saveString) {
+        String[] parts = saveString.split(" \\| ", 3);
+        if (parts.length < 3) return null;
+
+        String statusIcon = parts[1].trim();
+        String description = parts[2].trim();
+        boolean isDone = statusIcon.equals("X");
+
+        return new Todo(description, isDone);
+    }
+
     public static Todo parse(String input) throws DogException {
         String BAD_INPUT_MSG = "ToDo tasks must have a description!\n"
                 + "Expected: todo <description>";

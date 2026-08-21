@@ -19,6 +19,18 @@ public class Deadline extends Task {
         return String.format("D | %s | %s | %s", getStatusIcon(), description, by);
     }
 
+    public static Deadline fromSaveFormat(String saveString) {
+        String[] parts = saveString.split(" \\| ", 4);
+        if (parts.length < 4) return null;
+
+        String statusIcon = parts[1].trim();
+        String description = parts[2].trim();
+        String by = parts[3].trim();
+        boolean isDone = statusIcon.equals("X");
+
+        return new Deadline(description, by, isDone);
+    }
+
     public static Deadline parse(String input) throws DogException {
         String BAD_INPUT_MSG = "Deadline tasks must have a description and deadline!\n"
                 + "Expected: deadline <description> /by <deadline>";
