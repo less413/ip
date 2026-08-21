@@ -6,6 +6,10 @@ public class Todo extends Task {
         super(description);
     }
 
+    public Todo(String description, boolean isDone) {
+        super(description, isDone);
+    }
+
     public static Todo parse(String input) throws DogException {
         String BAD_INPUT_MSG = "ToDo tasks must have a description!\nExpected: todo <description>";
 

@@ -9,6 +9,11 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    public Deadline(String description, String by, boolean isDone) {
+        super(description, isDone);
+        this.by = by;
+    }
+
     public static Deadline parse(String input) throws DogException {
         String BAD_INPUT_MSG = "Deadline tasks must have a description and deadline!\n" +
                 "Expected: deadline <description> /by <deadline>";

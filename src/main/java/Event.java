@@ -11,6 +11,12 @@ public class Event extends Task {
         this.to = to;
     }
 
+    public Event(String description, String from, String to, boolean isDone) {
+        super(description, isDone);
+        this.from = from;
+        this.to = to;
+    }
+
     public static Event parse(String input) throws DogException {
         String BAD_INPUT_MSG = "Event tasks must have a description, a start date, and an end date!\n" +
                 "Expected: event <description> /from <start date> /to <end date>";
