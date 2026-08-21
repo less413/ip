@@ -19,7 +19,7 @@ public class Event extends Task {
 
     @Override
     public String toSaveFormat() {
-        return String.format("E | %s | %s | %s | %s", getStatusIcon(), description, from, to);
+        return String.format("E | %s | %s | %s | %s", getStatusIcon(), from, to, description);
     }
 
     public static Event fromSaveFormat(String saveString) {
@@ -27,9 +27,9 @@ public class Event extends Task {
         if (parts.length < 5) return null;
 
         String statusIcon = parts[1].trim();
-        String description = parts[2].trim();
-        String from = parts[3].trim();
-        String to = parts[4].trim();
+        String from = parts[2].trim();
+        String to = parts[3].trim();
+        String description = parts[4].trim();
         boolean isDone = statusIcon.equals("X");
 
         return new Event(description, from, to, isDone);

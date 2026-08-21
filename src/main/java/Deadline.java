@@ -16,7 +16,7 @@ public class Deadline extends Task {
 
     @Override
     public String toSaveFormat() {
-        return String.format("D | %s | %s | %s", getStatusIcon(), description, by);
+        return String.format("D | %s | %s | %s", getStatusIcon(), by, description);
     }
 
     public static Deadline fromSaveFormat(String saveString) {
@@ -24,8 +24,8 @@ public class Deadline extends Task {
         if (parts.length < 4) return null;
 
         String statusIcon = parts[1].trim();
-        String description = parts[2].trim();
-        String by = parts[3].trim();
+        String by = parts[2].trim();
+        String description = parts[3].trim();
         boolean isDone = statusIcon.equals("X");
 
         return new Deadline(description, by, isDone);
