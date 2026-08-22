@@ -23,7 +23,7 @@ public class TodoTest {
 
         // Test description with pipes
         Todo pipesTodo = new Todo(" || d | e |   | f ", true);
-        assertEquals("T | X | || d | e |   | f ", pipesTodo.toSaveFormat());
+        assertEquals("T | X |  || d | e |   | f ", pipesTodo.toSaveFormat());
     }
 
     @Test
@@ -35,21 +35,6 @@ public class TodoTest {
         // Test pending todo
         Todo pendingTodo = Todo.fromSaveFormat("T |   | survive 2103t");
         assertEquals("T |   | survive 2103t", pendingTodo.toSaveFormat());
-    }
-
-    @Test
-    public void fromSaveFormat_invalidFormat_returnsNull() {
-        // Test missing parts
-        assertNull(Todo.fromSaveFormat("T | Incomplete"));
-
-        // Test wrong prefix
-        assertNull(Todo.fromSaveFormat("D | X | Wrong prefix"));
-
-        // Test empty string
-        assertNull(Todo.fromSaveFormat(""));
-
-        // Test null input
-        assertNull(Todo.fromSaveFormat(null));
     }
 
     @Test
@@ -65,6 +50,31 @@ public class TodoTest {
         // Test description with pipe characters
         Todo pipeCharDoneTodo = Todo.fromSaveFormat("T | X |   | fard");
         assertEquals("T | X |   | fard", pipeCharDoneTodo.toSaveFormat());
+    }
+
+    @Test
+    public void fromSaveFormat_invalidFormat_returnsNull() {
+        // Test missing parts
+        assertNull(Todo.fromSaveFormat("T | broken"));
+
+        // Test missing spaces
+        assertNull(Todo.fromSaveFormat("T| X | i need space"));
+        assertNull(Todo.fromSaveFormat("T| | give me space"));
+
+        // Test invalid/missing status icon
+        assertNull(Todo.fromSaveFormat("T |  | give me more space"));
+        assertNull(Todo.fromSaveFormat("T | F | what the F"));
+
+        // Test invalid/missing task type icon
+        assertNull(Todo.fromSaveFormat("D | X | im dead :skull:"));
+        assertNull(Todo.fromSaveFormat("E |   | e"));
+        assertNull(Todo.fromSaveFormat(" |   | where is the t"));
+
+        // Test empty string
+        assertNull(Todo.fromSaveFormat(""));
+
+        // Test null
+        assertNull(Todo.fromSaveFormat(null));
     }
 
     @Test
