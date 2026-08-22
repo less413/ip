@@ -1,5 +1,3 @@
-package main;
-
 import exceptions.DogException;
 import model.Task;
 import model.TaskList;
