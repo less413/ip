@@ -26,12 +26,21 @@ public class Deadline extends Task {
     }
 
     public static Deadline fromSaveFormat(String saveString) {
+        if (saveString == null) return null;
+
         String[] parts = saveString.split(" \\| ", 4);
         if (parts.length < 4) return null;
 
-        String statusIcon = parts[1].trim();
-        String byStr = parts[2].trim();
-        String description = parts[3].trim();
+        String taskIcon = parts[0];
+        String statusIcon = parts[1];
+        String byStr = parts[2];
+        String description = parts[3];
+
+        // Return null if task/status icon is invalid
+        if (!taskIcon.equals("D") || !statusIcon.equals("X") && !statusIcon.equals(" ")) {
+            return null;
+        }
+
         boolean isDone = statusIcon.equals("X");
 
         try {

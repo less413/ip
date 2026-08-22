@@ -29,13 +29,22 @@ public class Event extends Task {
     }
 
     public static Event fromSaveFormat(String saveString) {
+        if (saveString == null) return null;
+
         String[] parts = saveString.split(" \\| ", 5);
         if (parts.length < 5) return null;
 
-        String statusIcon = parts[1].trim();
-        String fromStr = parts[2].trim();
-        String toStr = parts[3].trim();
-        String description = parts[4].trim();
+        String taskIcon = parts[0];
+        String statusIcon = parts[1];
+        String fromStr = parts[2];
+        String toStr = parts[3];
+        String description = parts[4];
+
+        // Return null if task/status icon is invalid
+        if (!taskIcon.equals("E") || !statusIcon.equals("X") && !statusIcon.equals(" ")) {
+            return null;
+        }
+
         boolean isDone = statusIcon.equals("X");
 
         try {
