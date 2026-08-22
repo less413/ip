@@ -19,12 +19,27 @@ public class Todo extends Task {
         return String.format("T | %s | %s", getStatusIcon(), description);
     }
 
+    /**
+     * Parses a task from its saved string format.
+     * 
+     * @param saveString the saved string in format "T | [X or space] | description"
+     * @return the parsed Todo, or null if the format is invalid
+     */
     public static Todo fromSaveFormat(String saveString) {
+        if (saveString == null) return null;
+
         String[] parts = saveString.split(" \\| ", 3);
         if (parts.length < 3) return null;
 
-        String statusIcon = parts[1].trim();
-        String description = parts[2].trim();
+        String taskIcon = parts[0];
+        String statusIcon = parts[1];
+        String description = parts[2];
+
+        // Return null if task/status icon is invalid
+        if (!taskIcon.equals("T") || !statusIcon.equals("X") && !statusIcon.equals(" ")) {
+            return null;
+        }
+
         boolean isDone = statusIcon.equals("X");
 
         return new Todo(description, isDone);
