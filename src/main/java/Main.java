@@ -1,6 +1,17 @@
+package main;
+
+import exceptions.DogException;
+import model.Task;
+import model.TaskList;
+import model.Todo;
+import model.Deadline;
+import model.Event;
+import parser.Parser;
+import storage.Storage;
+import ui.Ui;
 import java.util.Scanner;
 
-public class Dog {
+public class Main {
     private static final Storage storage = new Storage("./data/dog.txt");
     private static final Ui ui = new Ui();
     private static TaskList taskList = new TaskList();

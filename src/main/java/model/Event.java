@@ -1,3 +1,8 @@
+package model;
+
+import exceptions.DogException;
+import storage.DateUtils;
+
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -70,6 +75,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + DateUtils.format(this.from) + " to: " + DateUtils.format(this.to) + ")";
+        return "[E]" + super.toString() + " (from: " + DateUtils.format(this.from)
+                + " to: " + DateUtils.format(this.to) + ")";
     }
 }

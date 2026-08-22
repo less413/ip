@@ -1,3 +1,5 @@
+package exceptions;
+
 public class DogException extends Exception {
     public DogException() {
         super("DogException");
