@@ -17,7 +17,7 @@ public class TaskList {
 
     /**
      * Creates a task list with initial tasks.
-     * 
+     *
      * @param initialTasks the initial list of tasks
      */
     public TaskList(ArrayList<Task> initialTasks) {
@@ -26,7 +26,7 @@ public class TaskList {
 
     /**
      * Adds a task to the list.
-     * 
+     *
      * @param task the task to add
      */
     public void addTask(Task task) {
@@ -35,7 +35,7 @@ public class TaskList {
 
     /**
      * Deletes a task from the list at the specified index.
-     * 
+     *
      * @param index the index of the task to delete (0-based)
      * @return the deleted task
      * @throws IndexOutOfBoundsException if index is out of bounds
@@ -46,7 +46,7 @@ public class TaskList {
 
     /**
      * Marks a task as done at the specified index.
-     * 
+     *
      * @param index the index of the task to mark (0-based)
      * @throws IndexOutOfBoundsException if index is out of bounds
      */
@@ -56,7 +56,7 @@ public class TaskList {
 
     /**
      * Gets the total number of tasks in the list.
-     * 
+     *
      * @return the number of tasks
      */
     public int size() {
@@ -65,7 +65,7 @@ public class TaskList {
 
     /**
      * Gets a task at the specified index.
-     * 
+     *
      * @param index the index of the task (0-based)
      * @return the task at the index
      * @throws IndexOutOfBoundsException if index is out of bounds
@@ -76,7 +76,7 @@ public class TaskList {
 
     /**
      * Checks if the task list is empty.
-     * 
+     *
      * @return true if the list is empty, false otherwise
      */
     public boolean isEmpty() {
@@ -85,10 +85,28 @@ public class TaskList {
 
     /**
      * Returns an ArrayList copy of the tasks.
-     * 
+     *
      * @return a copy of the task list
      */
     public ArrayList<Task> getTasks() {
         return new ArrayList<Task>(tasks);
+    }
+
+    /**
+     * Returns a string representation of the task list.
+     *
+     * @return a formatted string showing all tasks in the list
+     */
+    @Override
+    public String toString() {
+        if (tasks.isEmpty()) {
+            return " (Your list is currently empty)";
+        } else {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < tasks.size(); i++) {
+                sb.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");
+            }
+            return sb.toString().trim();
+        }
     }
 }

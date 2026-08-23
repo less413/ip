@@ -40,7 +40,7 @@ public class Main {
                             return;
                         case LIST:
                             ui.showMessage("Here are the tasks in your list:");
-                            ui.showTaskList(taskList.getTasks());
+                            ui.showTaskList(taskList);
                             break;
                         case MARK:
                             try {

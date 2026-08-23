@@ -1,6 +1,7 @@
 package ui;
 
 import model.Task;
+import model.TaskList;
 
 import java.util.ArrayList;
 
@@ -11,12 +12,12 @@ public class Ui {
     private static final String LINE = "____________________________________________________________";
     private static final String BANNER =
             "      _____                \n"
-          + "      |  __ \\  ____   ___ _ \n"
-          + "      | |  | |/ __ \\ / __' |\n"
-          + "      | |  | | |  | | |__| |\n"
-          + "      | |__| | |__| |\\___  |\n"
-          + "      |_____/ \\____/ ____/ |\n"
-          + "                     \\____/ \n";
+                    + "      |  __ \\  ____   ___ _ \n"
+                    + "      | |  | |/ __ \\ / __' |\n"
+                    + "      | |  | | |  | | |__| |\n"
+                    + "      | |__| | |  | |\\___  |\n"
+                    + "      |_____/ \\____/ ____/ |\n"
+                    + "                     \\____/ \n";
     private static final String GREETING = "WOOF WOOF How can I help? WOOF";
     private static final String FAREWELL = "WOOF Goodbye! WOOF WOOF";
 
@@ -45,7 +46,7 @@ public class Ui {
 
     /**
      * Displays a message to the user.
-     * 
+     *
      * @param message the message to display
      */
     public void showMessage(String message) {
@@ -54,7 +55,7 @@ public class Ui {
 
     /**
      * Displays an error message.
-     * 
+     *
      * @param message the error message to display
      */
     public void showError(String message) {
@@ -63,22 +64,16 @@ public class Ui {
 
     /**
      * Displays a list of tasks.
-     * 
-     * @param tasks the list of tasks to display
+     *
+     * @param taskList the task list to display
      */
-    public void showTaskList(ArrayList<Task> tasks) {
-        if (tasks.isEmpty()) {
-            showMessage(" (Your list is currently empty)");
-        } else {
-            for (int i = 0; i < tasks.size(); i++) {
-                showMessage((i + 1) + ". " + tasks.get(i));
-            }
-        }
+    public void showTaskList(TaskList taskList) {
+        showMessage(taskList.toString());
     }
 
     /**
      * Displays a task that was marked as done.
-     * 
+     *
      * @param task the task that was marked
      */
     public void showTaskMarked(Task task) {
@@ -88,7 +83,7 @@ public class Ui {
 
     /**
      * Displays a task that was deleted.
-     * 
+     *
      * @param task the task that was deleted
      * @param remainingCount the number of tasks remaining
      */
@@ -100,7 +95,7 @@ public class Ui {
 
     /**
      * Displays a task that was added.
-     * 
+     *
      * @param task the task that was added
      */
     public void showTaskAdded(Task task) {
