@@ -1,4 +1,6 @@
-package model;public abstract class Task {
+package model;
+
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -15,7 +17,7 @@ package model;public abstract class Task {
     public abstract String toSaveFormat();
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     public void markAsDone() {

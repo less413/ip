@@ -1,12 +1,15 @@
 import exceptions.DogException;
+
 import model.Task;
 import model.TaskList;
 import model.Todo;
 import model.Deadline;
 import model.Event;
+
 import parser.Parser;
 import storage.Storage;
 import ui.Ui;
+
 import java.util.Scanner;
 
 public class Main {
