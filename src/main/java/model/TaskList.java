@@ -126,7 +126,7 @@ public class TaskList {
     @Override
     public String toString() {
         if (tasks.isEmpty()) {
-            return " (Your list is currently empty)";
+            return " (No tasks found)";
         } else {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < tasks.size(); i++) {
