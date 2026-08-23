@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import exceptions.DogException;
+
 /**
  * Manages a list of tasks with operations to add, delete, mark, and retrieve tasks.
  */
@@ -90,6 +92,30 @@ public class TaskList {
      */
     public ArrayList<Task> getTasks() {
         return new ArrayList<Task>(tasks);
+    }
+
+    /**
+     * Finds tasks that contain the given keyword in their description.
+     *
+     * @param keyword the keyword to search for.
+     * @return a new TaskList containing matching tasks.
+     * @throws DogException if keyword is empty or null.
+     */
+    public TaskList findTasks(String keyword) throws DogException {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            throw new DogException("Please provide a search keyword. (e.g., 'find book')");
+        }
+
+        TaskList foundTasks = new TaskList();
+        String searchKeyword = keyword.trim().toLowerCase();
+
+        for (Task task : tasks) {
+            if (task.containsKeyword(searchKeyword)) {
+                foundTasks.addTask(task);
+            }
+        }
+
+        return foundTasks;
     }
 
     /**

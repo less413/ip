@@ -14,13 +14,14 @@ public class Parser {
         TODO,
         DEADLINE,
         EVENT,
+        FIND,
         BYE;
 
         /**
          * Parses the input string to identify the command.
-         * 
-         * @param input The user input string
-         * @return The matching Command enum value, or null if no match is found
+         *
+         * @param input The user input string.
+         * @return The matching Command enum value, or null if no match is found.
          */
         public static Command fromInput(String input) {
             String lowerInput = input.toLowerCase().trim();
@@ -37,9 +38,9 @@ public class Parser {
 
         /**
          * Extracts the rest of the input after the command name.
-         * 
-         * @param input The original user input string
-         * @return The portion of input after the command name, or empty string if no match
+         *
+         * @param input The original user input string.
+         * @return The portion of input after the command name, or empty string if no match.
          */
         public String getCommandRest(String input) {
             if (!input.startsWith(this.name().toLowerCase())) {

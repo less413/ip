@@ -1,4 +1,6 @@
-package model;public abstract class Task {
+package model;
+
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -20,6 +22,16 @@ package model;public abstract class Task {
 
     public void markAsDone() {
         this.isDone = true;
+    }
+
+    /**
+     * Checks if the task description contains the given keyword.
+     *
+     * @param keyword the keyword to search for (case-insensitive).
+     * @return true if the description contains the keyword, false otherwise.
+     */
+    public boolean containsKeyword(String keyword) {
+        return this.description.toLowerCase().contains(keyword.toLowerCase());
     }
 
     @Override

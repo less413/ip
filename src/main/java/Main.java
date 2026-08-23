@@ -70,6 +70,12 @@ public class Main {
                             }
                             storage.save(taskList.getTasks());
                             break;
+                        case FIND:
+                            TaskList foundTasks = taskList.findTasks(rest);
+                            ui.showMessage("Here are the matching tasks in your list:");
+                            ui.showTaskList(foundTasks);
+                            storage.save(taskList.getTasks());
+                            break;
                         case TODO:
                             Task newTodo = Todo.parse(rest);
                             taskList.addTask(newTodo);
