@@ -1,6 +1,7 @@
 package ui;
 
 import model.Task;
+import model.TaskList;
 
 import java.util.ArrayList;
 
@@ -9,15 +10,14 @@ import java.util.ArrayList;
  */
 public class Ui {
     private static final String LINE = "____________________________________________________________";
-    private static final String BANNER =
-            "      _____                \n"
-          + "      |  __ \\  ____   ___ _ \n"
-          + "      | |  | |/ __ \\ / __' |\n"
-          + "      | |  | | |  | | |__| |\n"
-          + "      | |__| | |  | | |__| |\n"
-          + "      | |__| | |  | | |__| |\n"
-          + "      |_____/ \\____/ ____/ |\n"
-          + "                     \\____/ \n";
+    private static final String BANNER = "      _____\n"
+            + "      |  __ \\  ____   ___ _\n"
+            + "      | |  | |/ __ \\ / __' |\n"
+            + "      | |  | | |  | | |__| |\n"
+            + "      | |__| | |  | | |__| |\n"
+            + "      | |__| | |  | | |__| |\n"
+            + "      |_____/ \\____/ ____/ |\n"
+            + "                     \\____/\n";
     private static final String GREETING = "WOOF WOOF How can I help? WOOF";
     private static final String FAREWELL = "WOOF Goodbye! WOOF WOOF";
 
@@ -65,16 +65,10 @@ public class Ui {
     /**
      * Displays the tasks in a given task list.
      *
-     * @param tasks the list of tasks to display.
+     * @param taskList the list of tasks to display.
      */
-    public void showTaskList(ArrayList<Task> tasks) {
-        if (tasks.isEmpty()) {
-            showMessage(" (Your list is currently empty)");
-        } else {
-            for (int i = 0; i < tasks.size(); i++) {
-                showMessage((i + 1) + ". " + tasks.get(i));
-            }
-        }
+    public void showTaskList(TaskList taskList) {
+        showMessage(taskList.toString());
     }
 
     /**

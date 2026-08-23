@@ -53,7 +53,7 @@ public class Main {
                             return;
                         case LIST:
                             ui.showMessage("Here are the tasks in your list:");
-                            ui.showTaskList(taskList.getTasks());
+                            ui.showTaskList(taskList);
                             break;
                         case MARK:
                             try {
@@ -81,6 +81,12 @@ public class Main {
                             } catch (NumberFormatException e) {
                                 throw new DogException("Please provide a valid task number. (e.g., 'delete 2').");
                             }
+                            storage.save(taskList.getTasks());
+                            break;
+                        case FIND:
+                            TaskList foundTasks = taskList.findTasks(rest);
+                            ui.showMessage("Here are the matching tasks in your list:");
+                            ui.showTaskList(foundTasks);
                             storage.save(taskList.getTasks());
                             break;
                         case TODO:
