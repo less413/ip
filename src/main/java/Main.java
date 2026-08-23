@@ -9,11 +9,21 @@ import storage.Storage;
 import ui.Ui;
 import java.util.Scanner;
 
+/**
+ * Main entry point for the Dog task management application.
+ * Initializes the application components and handles the main interaction loop.
+ */
 public class Main {
     private static final Storage storage = new Storage("./data/dog.txt");
     private static final Ui ui = new Ui();
     private static TaskList taskList = new TaskList();
 
+    /**
+     * Main method that starts the Dog application.
+     * Shows welcome message, loads tasks, and processes user commands until exit.
+     *
+     * @param args command line arguments (not used).
+     */
     public static void main(String[] args) {
         ui.showWelcome();
         taskList = new TaskList(storage.load());

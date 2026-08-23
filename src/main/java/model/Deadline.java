@@ -7,24 +7,51 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Represents a deadline task that must be completed by a specific date.
+ */
 public class Deadline extends Task {
     protected LocalDate by;
 
+    /**
+     * Creates a deadline task with the specified description and deadline date.
+     *
+     * @param description the task description.
+     * @param by the deadline date.
+     */
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
     }
 
+    /**
+     * Creates a deadline task with the specified description, deadline date, and completion status.
+     *
+     * @param description the task description.
+     * @param by the deadline date.
+     * @param isDone true if the task is completed, false otherwise.
+     */
     public Deadline(String description, LocalDate by, boolean isDone) {
         super(description, isDone);
         this.by = by;
     }
 
+    /**
+     * Returns a string representation of the deadline task for saving to file.
+     *
+     * @return the deadline in save format.
+     */
     @Override
     public String toSaveFormat() {
         return String.format("D | %s | %s | %s", getStatusIcon(), by.toString(), description);
     }
 
+    /**
+     * Parses a deadline task from its saved string format.
+     *
+     * @param saveString the saved string in format "D | [X or space] | date | description".
+     * @return the parsed Deadline, or null if the format is invalid.
+     */
     public static Deadline fromSaveFormat(String saveString) {
         if (saveString == null) return null;
 
@@ -52,6 +79,13 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Parses a deadline task from user input.
+     *
+     * @param input the user input string.
+     * @return the parsed Deadline.
+     * @throws DogException if the input format is invalid.
+     */
     public static Deadline parse(String input) throws DogException {
         String BAD_INPUT_MSG = "Deadline tasks must have a description and deadline!\n"
                 + "Expected: deadline <description> /by <deadline>";
@@ -75,6 +109,11 @@ public class Deadline extends Task {
         return new Deadline(description, by);
     }
 
+    /**
+     * Returns a string representation of the deadline task for display.
+     *
+     * @return the deadline in display format.
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + DateUtils.format(this.by) + ")";

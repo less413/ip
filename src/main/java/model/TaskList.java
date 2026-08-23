@@ -17,8 +17,8 @@ public class TaskList {
 
     /**
      * Creates a task list with initial tasks.
-     * 
-     * @param initialTasks the initial list of tasks
+     *
+     * @param initialTasks the initial list of tasks.
      */
     public TaskList(ArrayList<Task> initialTasks) {
         this.tasks = new ArrayList<Task>(initialTasks);
@@ -26,8 +26,8 @@ public class TaskList {
 
     /**
      * Adds a task to the list.
-     * 
-     * @param task the task to add
+     *
+     * @param task the task to add.
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -35,10 +35,10 @@ public class TaskList {
 
     /**
      * Deletes a task from the list at the specified index.
-     * 
-     * @param index the index of the task to delete (0-based)
-     * @return the deleted task
-     * @throws IndexOutOfBoundsException if index is out of bounds
+     *
+     * @param index the index of the task to delete (0-based).
+     * @return the deleted task.
+     * @throws IndexOutOfBoundsException if index is out of bounds.
      */
     public Task deleteTask(int index) {
         return tasks.remove(index);
@@ -46,9 +46,9 @@ public class TaskList {
 
     /**
      * Marks a task as done at the specified index.
-     * 
-     * @param index the index of the task to mark (0-based)
-     * @throws IndexOutOfBoundsException if index is out of bounds
+     *
+     * @param index the index of the task to mark (0-based).
+     * @throws IndexOutOfBoundsException if index is out of bounds.
      */
     public void markTask(int index) {
         tasks.get(index).markAsDone();
@@ -56,8 +56,8 @@ public class TaskList {
 
     /**
      * Gets the total number of tasks in the list.
-     * 
-     * @return the number of tasks
+     *
+     * @return the number of tasks.
      */
     public int size() {
         return tasks.size();
@@ -65,10 +65,10 @@ public class TaskList {
 
     /**
      * Gets a task at the specified index.
-     * 
-     * @param index the index of the task (0-based)
-     * @return the task at the index
-     * @throws IndexOutOfBoundsException if index is out of bounds
+     *
+     * @param index the index of the task (0-based).
+     * @return the task at the index.
+     * @throws IndexOutOfBoundsException if index is out of bounds.
      */
     public Task getTask(int index) {
         return tasks.get(index);
@@ -76,8 +76,8 @@ public class TaskList {
 
     /**
      * Checks if the task list is empty.
-     * 
-     * @return true if the list is empty, false otherwise
+     *
+     * @return true if the list is empty, false otherwise.
      */
     public boolean isEmpty() {
         return tasks.isEmpty();
@@ -85,8 +85,8 @@ public class TaskList {
 
     /**
      * Returns an ArrayList copy of the tasks.
-     * 
-     * @return a copy of the task list
+     *
+     * @return a copy of the task list.
      */
     public ArrayList<Task> getTasks() {
         return new ArrayList<Task>(tasks);
