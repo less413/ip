@@ -1,7 +1,5 @@
 package parser;
 
-import java.util.Scanner;
-
 /**
  * Handles parsing of user input into commands.
  * Provides a Command enum with methods to identify commands from user input.

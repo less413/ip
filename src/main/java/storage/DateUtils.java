@@ -1,10 +1,10 @@
 package storage;
 
-import exceptions.DogException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import exceptions.DogException;
 
 /**
  * Utility class for handling date parsing and formatting.
@@ -12,9 +12,9 @@ import java.time.format.DateTimeParseException;
  */
 public class DateUtils {
     private static final DateTimeFormatter INPUT_FORMATTER =
-        DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter OUTPUT_FORMATTER =
-        DateTimeFormatter.ofPattern("MMM dd yyyy");
+            DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     /**
      * Parses a date string in yyyy-MM-dd format to LocalDate.

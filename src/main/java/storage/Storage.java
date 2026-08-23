@@ -1,14 +1,14 @@
 package storage;
 
-import model.Deadline;
-import model.Event;
-import model.Task;
-import model.Todo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import model.Deadline;
+import model.Event;
+import model.Task;
+import model.Todo;
 
 /**
  * Handles loading and saving tasks to a file storage.

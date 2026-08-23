@@ -3,8 +3,6 @@ package ui;
 import model.Task;
 import model.TaskList;
 
-import java.util.ArrayList;
-
 /**
  * Handles user interface interactions - printing messages to the console.
  */

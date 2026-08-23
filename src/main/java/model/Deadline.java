@@ -1,11 +1,11 @@
 package model;
 
-import exceptions.DogException;
-import storage.DateUtils;
-
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import exceptions.DogException;
+import storage.DateUtils;
 
 /**
  * Represents a deadline task that must be completed by a specific date.
@@ -17,7 +17,7 @@ public class Deadline extends Task {
      * Creates a deadline task with the specified description and deadline date.
      *
      * @param description the task description.
-     * @param by the deadline date.
+     * @param by          the deadline date.
      */
     public Deadline(String description, LocalDate by) {
         super(description);
@@ -28,22 +28,12 @@ public class Deadline extends Task {
      * Creates a deadline task with the specified description, deadline date, and completion status.
      *
      * @param description the task description.
-     * @param by the deadline date.
-     * @param isDone true if the task is completed, false otherwise.
+     * @param by          the deadline date.
+     * @param isDone      true if the task is completed, false otherwise.
      */
     public Deadline(String description, LocalDate by, boolean isDone) {
         super(description, isDone);
         this.by = by;
-    }
-
-    /**
-     * Returns a string representation of the deadline task for saving to file.
-     *
-     * @return the deadline in save format.
-     */
-    @Override
-    public String toSaveFormat() {
-        return String.format("D | %s | %s | %s", getStatusIcon(), by.toString(), description);
     }
 
     /**
@@ -107,6 +97,16 @@ public class Deadline extends Task {
 
         LocalDate by = DateUtils.parse(byStr);
         return new Deadline(description, by);
+    }
+
+    /**
+     * Returns a string representation of the deadline task for saving to file.
+     *
+     * @return the deadline in save format.
+     */
+    @Override
+    public String toSaveFormat() {
+        return String.format("D | %s | %s | %s", getStatusIcon(), by.toString(), description);
     }
 
     /**

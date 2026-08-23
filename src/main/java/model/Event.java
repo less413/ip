@@ -1,11 +1,11 @@
 package model;
 
-import exceptions.DogException;
-import storage.DateUtils;
-
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import exceptions.DogException;
+import storage.DateUtils;
 
 /**
  * Represents an event task that occurs within a specific time period.
@@ -18,8 +18,8 @@ public class Event extends Task {
      * Creates an event task with the specified description and date range.
      *
      * @param description the task description.
-     * @param from the start date of the event.
-     * @param to the end date of the event.
+     * @param from        the start date of the event.
+     * @param to          the end date of the event.
      */
     public Event(String description, LocalDate from, LocalDate to) {
         super(description);
@@ -31,24 +31,14 @@ public class Event extends Task {
      * Creates an event task with the specified description, date range, and completion status.
      *
      * @param description the task description.
-     * @param from the start date of the event.
-     * @param to the end date of the event.
-     * @param isDone true if the task is completed, false otherwise.
+     * @param from        the start date of the event.
+     * @param to          the end date of the event.
+     * @param isDone      true if the task is completed, false otherwise.
      */
     public Event(String description, LocalDate from, LocalDate to, boolean isDone) {
         super(description, isDone);
         this.from = from;
         this.to = to;
-    }
-
-    /**
-     * Returns a string representation of the event task for saving to file.
-     *
-     * @return the event in save format.
-     */
-    @Override
-    public String toSaveFormat() {
-        return String.format("E | %s | %s | %s | %s", getStatusIcon(), from.toString(), to.toString(), description);
     }
 
     /**
@@ -116,6 +106,16 @@ public class Event extends Task {
         LocalDate from = DateUtils.parse(fromStr);
         LocalDate to = DateUtils.parse(toStr);
         return new Event(description, from, to);
+    }
+
+    /**
+     * Returns a string representation of the event task for saving to file.
+     *
+     * @return the event in save format.
+     */
+    @Override
+    public String toSaveFormat() {
+        return String.format("E | %s | %s | %s | %s", getStatusIcon(), from.toString(), to.toString(), description);
     }
 
     /**

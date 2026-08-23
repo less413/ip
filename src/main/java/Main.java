@@ -1,16 +1,14 @@
-import exceptions.DogException;
+import java.util.Scanner;
 
+import exceptions.DogException;
+import model.Deadline;
+import model.Event;
 import model.Task;
 import model.TaskList;
 import model.Todo;
-import model.Deadline;
-import model.Event;
-
 import parser.Parser;
 import storage.Storage;
 import ui.Ui;
-
-import java.util.Scanner;
 
 /**
  * Main entry point for the Dog task management application.

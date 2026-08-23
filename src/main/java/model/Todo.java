@@ -1,9 +1,9 @@
 package model;
 
-import exceptions.DogException;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import exceptions.DogException;
 
 /**
  * Represents a todo task that needs to be done without a specific deadline.
@@ -22,20 +22,10 @@ public class Todo extends Task {
      * Creates a todo task with the specified description and completion status.
      *
      * @param description the task description.
-     * @param isDone true if the task is completed, false otherwise.
+     * @param isDone      true if the task is completed, false otherwise.
      */
     public Todo(String description, boolean isDone) {
         super(description, isDone);
-    }
-
-    /**
-     * Returns a string representation of the todo task for saving to file.
-     *
-     * @return the todo in save format.
-     */
-    @Override
-    public String toSaveFormat() {
-        return String.format("T | %s | %s", getStatusIcon(), description);
     }
 
     /**
@@ -90,6 +80,16 @@ public class Todo extends Task {
         }
 
         return new Todo(description);
+    }
+
+    /**
+     * Returns a string representation of the todo task for saving to file.
+     *
+     * @return the todo in save format.
+     */
+    @Override
+    public String toSaveFormat() {
+        return String.format("T | %s | %s", getStatusIcon(), description);
     }
 
     /**
