@@ -14,7 +14,8 @@ public class Ui {
           + "      |  __ \\  ____   ___ _ \n"
           + "      | |  | |/ __ \\ / __' |\n"
           + "      | |  | | |  | | |__| |\n"
-          + "      | |__| | |__| |\\___  |\n"
+          + "      | |__| | |  | | |__| |\n"
+          + "      | |__| | |  | | |__| |\n"
           + "      |_____/ \\____/ ____/ |\n"
           + "                     \\____/ \n";
     private static final String GREETING = "WOOF WOOF How can I help? WOOF";
@@ -37,7 +38,7 @@ public class Ui {
     }
 
     /**
-     * Displays a message to the user.
+     * Displays a separator line.
      */
     public void showLine() {
         System.out.println(LINE);
@@ -45,26 +46,26 @@ public class Ui {
 
     /**
      * Displays a message to the user.
-     * 
-     * @param message the message to display
+     *
+     * @param message the message to display.
      */
     public void showMessage(String message) {
         System.out.println(message);
     }
 
     /**
-     * Displays an error message.
-     * 
-     * @param message the error message to display
+     * Displays an error message with a dog-themed prefix.
+     *
+     * @param message the error message to display.
      */
     public void showError(String message) {
         System.out.println("WOOF WOOF there is something wrong:\n" + message);
     }
 
     /**
-     * Displays a list of tasks.
-     * 
-     * @param tasks the list of tasks to display
+     * Displays the tasks in a given task list.
+     *
+     * @param tasks the list of tasks to display.
      */
     public void showTaskList(ArrayList<Task> tasks) {
         if (tasks.isEmpty()) {
@@ -78,8 +79,8 @@ public class Ui {
 
     /**
      * Displays a task that was marked as done.
-     * 
-     * @param task the task that was marked
+     *
+     * @param task the task that was marked.
      */
     public void showTaskMarked(Task task) {
         showMessage("WOOF! I've marked this task as done:");
@@ -88,9 +89,9 @@ public class Ui {
 
     /**
      * Displays a task that was deleted.
-     * 
-     * @param task the task that was deleted
-     * @param remainingCount the number of tasks remaining
+     *
+     * @param task the task that was deleted.
+     * @param remainingCount the number of tasks remaining.
      */
     public void showTaskDeleted(Task task, int remainingCount) {
         showMessage("WOOF! I've deleted this task:");
@@ -100,15 +101,15 @@ public class Ui {
 
     /**
      * Displays a task that was added.
-     * 
-     * @param task the task that was added
+     *
+     * @param task the newly-added task.
      */
     public void showTaskAdded(Task task) {
         showMessage("WOOF! I've added a new task: \n" + task);
     }
 
     /**
-     * Displays a message asking the user to say something.
+     * Displays a message prompting the user to provide a non-empty input.
      */
     public void askForInput() {
         System.out.println("...say something? woof...");

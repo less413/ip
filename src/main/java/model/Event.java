@@ -7,27 +7,56 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Represents an event task that occurs within a specific time period.
+ */
 public class Event extends Task {
     protected LocalDate from;
     protected LocalDate to;
 
+    /**
+     * Creates an event task with the specified description and date range.
+     *
+     * @param description the task description.
+     * @param from the start date of the event.
+     * @param to the end date of the event.
+     */
     public Event(String description, LocalDate from, LocalDate to) {
         super(description);
         this.from = from;
         this.to = to;
     }
 
+    /**
+     * Creates an event task with the specified description, date range, and completion status.
+     *
+     * @param description the task description.
+     * @param from the start date of the event.
+     * @param to the end date of the event.
+     * @param isDone true if the task is completed, false otherwise.
+     */
     public Event(String description, LocalDate from, LocalDate to, boolean isDone) {
         super(description, isDone);
         this.from = from;
         this.to = to;
     }
 
+    /**
+     * Returns a string representation of the event task for saving to file.
+     *
+     * @return the event in save format.
+     */
     @Override
     public String toSaveFormat() {
         return String.format("E | %s | %s | %s | %s", getStatusIcon(), from.toString(), to.toString(), description);
     }
 
+    /**
+     * Parses an event task from its saved string format.
+     *
+     * @param saveString the saved string in format "E | [X or space] | from | to | description".
+     * @return the parsed Event, or null if the format is invalid.
+     */
     public static Event fromSaveFormat(String saveString) {
         if (saveString == null) return null;
 
@@ -57,6 +86,13 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Parses an event task from user input.
+     *
+     * @param input the user input string.
+     * @return the parsed Event.
+     * @throws DogException if the input format is invalid.
+     */
     public static Event parse(String input) throws DogException {
         String BAD_INPUT_MSG = "Event tasks must have a description, a start date, and an end date!\n"
                 + "Expected: event <description> /from <start date> /to <end date>";
@@ -82,6 +118,11 @@ public class Event extends Task {
         return new Event(description, from, to);
     }
 
+    /**
+     * Returns a string representation of the event task for display.
+     *
+     * @return the event in display format.
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (from: " + DateUtils.format(this.from)
