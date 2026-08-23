@@ -11,9 +11,9 @@ import java.time.format.DateTimeParseException;
  * Accepts dates in yyyy-MM-dd format and displays in MMM dd yyyy format.
  */
 public class DateUtils {
-    private static final DateTimeFormatter INPUT_FORMATTER = 
+    private static final DateTimeFormatter INPUT_FORMATTER =
         DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private static final DateTimeFormatter OUTPUT_FORMATTER = 
+    private static final DateTimeFormatter OUTPUT_FORMATTER =
         DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     /**

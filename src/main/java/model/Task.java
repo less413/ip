@@ -42,7 +42,7 @@ public abstract class Task {
      * @return "X" if completed, " " if not completed.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     /**
