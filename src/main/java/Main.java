@@ -15,9 +15,8 @@ import ui.Ui;
  * Initializes the application components and handles the main interaction loop.
  */
 public class Main {
-    private static final Storage storage = new Storage("./data/dog.txt");
-    private static final Ui ui = new Ui();
-    private static TaskList taskList = new TaskList();
+    private static final Storage STORAGE = new Storage("./data/dog.txt");
+    private static final Ui UI = new Ui();
 
     /**
      * Main method that starts the Dog application.
@@ -26,15 +25,15 @@ public class Main {
      * @param args command line arguments (not used).
      */
     public static void main(String[] args) {
-        ui.showWelcome();
-        taskList = new TaskList(storage.load());
+        UI.showWelcome();
+        TaskList taskList = new TaskList(STORAGE.load());
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNextLine()) {
             try {
                 String input = scanner.nextLine().trim();
                 if (input.isEmpty()) {
-                    ui.askForInput();
+                    UI.askForInput();
                 } else {
                     Parser.Command command = Parser.Command.fromInput(input);
                     if (command == null) {
@@ -45,72 +44,72 @@ public class Main {
 
                     switch (command) {
                         case BYE:
-                            storage.save(taskList.getTasks());
-                            ui.showGoodbye();
+                            STORAGE.save(taskList.getTasks());
+                            UI.showGoodbye();
                             scanner.close();
                             return;
                         case LIST:
-                            ui.showMessage("Here are the tasks in your list:");
-                            ui.showTaskList(taskList);
+                            UI.showMessage("Here are the tasks in your list:");
+                            UI.showTaskList(taskList);
                             break;
                         case MARK:
                             try {
                                 int index = Integer.parseInt(rest.trim()) - 1;
                                 if (index >= 0 && index < taskList.size()) {
                                     taskList.markTask(index);
-                                    ui.showTaskMarked(taskList.getTask(index));
+                                    UI.showTaskMarked(taskList.getTask(index));
                                 } else {
                                     throw new DogException("Task index out of bounds.");
                                 }
                             } catch (NumberFormatException e) {
                                 throw new DogException("Please provide a valid task number. (e.g., 'mark 2').");
                             }
-                            storage.save(taskList.getTasks());
+                            STORAGE.save(taskList.getTasks());
                             break;
                         case DELETE:
                             try {
                                 int index = Integer.parseInt(rest.trim()) - 1;
                                 if (index >= 0 && index < taskList.size()) {
                                     Task deletedTask = taskList.deleteTask(index);
-                                    ui.showTaskDeleted(deletedTask, taskList.size());
+                                    UI.showTaskDeleted(deletedTask, taskList.size());
                                 } else {
                                     throw new DogException("Task index out of bounds.");
                                 }
                             } catch (NumberFormatException e) {
                                 throw new DogException("Please provide a valid task number. (e.g., 'delete 2').");
                             }
-                            storage.save(taskList.getTasks());
+                            STORAGE.save(taskList.getTasks());
                             break;
                         case FIND:
                             TaskList foundTasks = taskList.findTasks(rest);
-                            ui.showMessage("Here are the matching tasks in your list:");
-                            ui.showTaskList(foundTasks);
-                            storage.save(taskList.getTasks());
+                            UI.showMessage("Here are the matching tasks in your list:");
+                            UI.showTaskList(foundTasks);
+                            STORAGE.save(taskList.getTasks());
                             break;
                         case TODO:
                             Task newTodo = Todo.parse(rest);
                             taskList.addTask(newTodo);
-                            ui.showTaskAdded(newTodo);
-                            storage.save(taskList.getTasks());
+                            UI.showTaskAdded(newTodo);
+                            STORAGE.save(taskList.getTasks());
                             break;
                         case DEADLINE:
                             Task newDeadline = Deadline.parse(rest);
                             taskList.addTask(newDeadline);
-                            ui.showTaskAdded(newDeadline);
-                            storage.save(taskList.getTasks());
+                            UI.showTaskAdded(newDeadline);
+                            STORAGE.save(taskList.getTasks());
                             break;
                         case EVENT:
                             Task newEvent = Event.parse(rest);
                             taskList.addTask(newEvent);
-                            ui.showTaskAdded(newEvent);
-                            storage.save(taskList.getTasks());
+                            UI.showTaskAdded(newEvent);
+                            STORAGE.save(taskList.getTasks());
                             break;
                     }
                 }
             } catch (DogException e) {
-                ui.showError(e.getMessage());
+                UI.showError(e.getMessage());
             } finally {
-                ui.showLine();
+                UI.showLine();
             }
         }
     }
