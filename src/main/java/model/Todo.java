@@ -35,10 +35,14 @@ public class Todo extends Task {
      * @return the parsed Todo, or null if the format is invalid.
      */
     public static Todo fromSaveFormat(String saveString) {
-        if (saveString == null) return null;
+        if (saveString == null) {
+            return null;
+        }
 
         String[] parts = saveString.split(" \\| ", 3);
-        if (parts.length < 3) return null;
+        if (parts.length < 3) {
+            return null;
+        }
 
         String taskIcon = parts[0];
         String statusIcon = parts[1];
@@ -62,7 +66,7 @@ public class Todo extends Task {
      * @throws DogException if the input format is invalid.
      */
     public static Todo parse(String input) throws DogException {
-        String BAD_INPUT_MSG = "ToDo tasks must have a description!\n"
+        final String BAD_INPUT_MESSAGE = "ToDo tasks must have a description!\n"
                 + "Expected: todo <description>";
 
         // Pattern: " <description>"
@@ -70,13 +74,13 @@ public class Todo extends Task {
         Matcher matcher = pattern.matcher(input);
 
         if (!matcher.matches()) {
-            throw new DogException(BAD_INPUT_MSG);
+            throw new DogException(BAD_INPUT_MESSAGE);
         }
 
         String description = matcher.group(1).trim();
 
         if (description.isEmpty()) {
-            throw new DogException(BAD_INPUT_MSG);
+            throw new DogException(BAD_INPUT_MESSAGE);
         }
 
         return new Todo(description);

@@ -48,10 +48,14 @@ public class Event extends Task {
      * @return the parsed Event, or null if the format is invalid.
      */
     public static Event fromSaveFormat(String saveString) {
-        if (saveString == null) return null;
+        if (saveString == null) {
+            return null;
+        }
 
         String[] parts = saveString.split(" \\| ", 5);
-        if (parts.length < 5) return null;
+        if (parts.length < 5) {
+            return null;
+        }
 
         String taskIcon = parts[0];
         String statusIcon = parts[1];
@@ -84,7 +88,7 @@ public class Event extends Task {
      * @throws DogException if the input format is invalid.
      */
     public static Event parse(String input) throws DogException {
-        String BAD_INPUT_MSG = "Event tasks must have a description, a start date, and an end date!\n"
+        final String BAD_INPUT_MESSAGE = "Event tasks must have a description, a start date, and an end date!\n"
                 + "Expected: event <description> /from <start date> /to <end date>";
 
         // Pattern: " <description> /from <from> /to <to>"
@@ -92,7 +96,7 @@ public class Event extends Task {
         Matcher matcher = pattern.matcher(input);
 
         if (!matcher.matches()) {
-            throw new DogException(BAD_INPUT_MSG);
+            throw new DogException(BAD_INPUT_MESSAGE);
         }
 
         String description = matcher.group(1).trim();
@@ -100,7 +104,7 @@ public class Event extends Task {
         String toStr = matcher.group(3).trim();
 
         if (description.isEmpty() || fromStr.isEmpty() || toStr.isEmpty()) {
-            throw new DogException(BAD_INPUT_MSG);
+            throw new DogException(BAD_INPUT_MESSAGE);
         }
 
         LocalDate from = DateUtils.parse(fromStr);

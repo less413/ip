@@ -43,10 +43,14 @@ public class Deadline extends Task {
      * @return the parsed Deadline, or null if the format is invalid.
      */
     public static Deadline fromSaveFormat(String saveString) {
-        if (saveString == null) return null;
+        if (saveString == null) {
+            return null;
+        }
 
         String[] parts = saveString.split(" \\| ", 4);
-        if (parts.length < 4) return null;
+        if (parts.length < 4) {
+            return null;
+        }
 
         String taskIcon = parts[0];
         String statusIcon = parts[1];
@@ -77,7 +81,7 @@ public class Deadline extends Task {
      * @throws DogException if the input format is invalid.
      */
     public static Deadline parse(String input) throws DogException {
-        String BAD_INPUT_MSG = "Deadline tasks must have a description and deadline!\n"
+        final String BAD_INPUT_MESSAGE = "Deadline tasks must have a description and deadline!\n"
                 + "Expected: deadline <description> /by <deadline>";
 
         // Pattern: " <description> /by <by>" where <by> is in yyyy-MM-dd format
@@ -85,14 +89,14 @@ public class Deadline extends Task {
         Matcher matcher = pattern.matcher(input);
 
         if (!matcher.matches()) {
-            throw new DogException(BAD_INPUT_MSG);
+            throw new DogException(BAD_INPUT_MESSAGE);
         }
 
         String description = matcher.group(1).trim();
         String byStr = matcher.group(2).trim();
 
         if (description.isEmpty() || byStr.isEmpty()) {
-            throw new DogException(BAD_INPUT_MSG);
+            throw new DogException(BAD_INPUT_MESSAGE);
         }
 
         LocalDate by = DateUtils.parse(byStr);
