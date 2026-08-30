@@ -104,6 +104,8 @@ public class Main {
                             UI.showTaskAdded(newEvent);
                             STORAGE.save(taskList.getTasks());
                             break;
+                        default:
+                            break;
                     }
                 }
             } catch (DogException e) {
