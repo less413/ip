@@ -15,8 +15,8 @@ public class Ui {
             + "      | |__| | |__| |\\___  |\n"
             + "      |_____/ \\____/ ____/ |\n"
             + "                     \\____/ \n";
-    private static final String GREETING = "WOOF WOOF How can I help? WOOF";
-    private static final String FAREWELL = "WOOF Goodbye! WOOF WOOF";
+    private static final String GREETING = "WOOF WOOF! How can I help? WOOF";
+    private static final String FAREWELL = "WOOF! Goodbye! WOOF WOOF";
 
     /**
      * Displays a message to the user.
