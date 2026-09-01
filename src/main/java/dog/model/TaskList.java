@@ -1,8 +1,8 @@
-package model;
+package dog.model;
 
 import java.util.ArrayList;
 
-import exceptions.DogException;
+import dog.exceptions.DogException;
 
 /**
  * Manages a list of tasks with operations to add, delete, mark, and retrieve tasks.

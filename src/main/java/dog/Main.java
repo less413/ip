@@ -1,17 +1,19 @@
+package dog;
+
 import java.util.Scanner;
 
-import exceptions.DogException;
-import model.Deadline;
-import model.Event;
-import model.Task;
-import model.TaskList;
-import model.Todo;
-import parser.Parser;
-import storage.Storage;
-import ui.Ui;
+import dog.exceptions.DogException;
+import dog.model.Deadline;
+import dog.model.Event;
+import dog.model.Task;
+import dog.model.TaskList;
+import dog.model.Todo;
+import dog.parser.Parser;
+import dog.storage.Storage;
+import dog.ui.Ui;
 
 /**
- * Main entry point for the Dog task management application.
+ * dog.Main entry point for the Dog task management application.
  * Initializes the application components and handles the main interaction loop.
  */
 public class Main {
@@ -19,7 +21,7 @@ public class Main {
     private static final Ui UI = new Ui();
 
     /**
-     * Main method that starts the Dog application.
+     * dog.Main method that starts the Dog application.
      * Shows welcome message, loads tasks, and processes user commands until exit.
      *
      * @param args command line arguments (not used).

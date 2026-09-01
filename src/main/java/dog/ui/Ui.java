@@ -1,7 +1,7 @@
-package ui;
+package dog.ui;
 
-import model.Task;
-import model.TaskList;
+import dog.model.Task;
+import dog.model.TaskList;
 
 /**
  * Handles user interface interactions - printing messages to the console.
@@ -9,13 +9,12 @@ import model.TaskList;
 public class Ui {
     private static final String LINE = "____________________________________________________________";
     private static final String BANNER = "      _____\n"
-            + "      |  __ \\  ____   ___ _\n"
+            + "      |  __ \\  ____   ___ _ \n"
             + "      | |  | |/ __ \\ / __' |\n"
             + "      | |  | | |  | | |__| |\n"
-            + "      | |__| | |  | | |__| |\n"
-            + "      | |__| | |  | | |__| |\n"
+            + "      | |__| | |__| |\\___  |\n"
             + "      |_____/ \\____/ ____/ |\n"
-            + "                     \\____/\n";
+            + "                     \\____/ \n";
     private static final String GREETING = "WOOF WOOF How can I help? WOOF";
     private static final String FAREWELL = "WOOF Goodbye! WOOF WOOF";
 

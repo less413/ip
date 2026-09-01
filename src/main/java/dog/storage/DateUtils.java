@@ -1,10 +1,10 @@
-package storage;
+package dog.storage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import exceptions.DogException;
+import dog.exceptions.DogException;
 
 /**
  * Utility class for handling date parsing and formatting.
@@ -43,10 +43,10 @@ public class DateUtils {
     }
 
     /**
-     * Parses a date string and returns it in ISO format (yyyy-MM-dd) for storage.
+     * Parses a date string and returns it in ISO format (yyyy-MM-dd) for dog.storage.
      *
      * @param dateStr the input date string (yyyy-MM-dd).
-     * @return the date in ISO format for reliable storage.
+     * @return the date in ISO format for reliable dog.storage.
      * @throws DogException if the date string is invalid.
      */
     public static String toSaveFormat(String dateStr) throws DogException {

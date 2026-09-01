@@ -1,11 +1,11 @@
-package model;
+package dog.model;
 
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import exceptions.DogException;
-import storage.DateUtils;
+import dog.exceptions.DogException;
+import dog.storage.DateUtils;
 
 /**
  * Represents an event task that occurs within a specific time period.

@@ -1,4 +1,4 @@
-package model;
+package dog.model;
 
 /**
  * Abstract base class representing a task in the Dog application.

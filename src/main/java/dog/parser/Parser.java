@@ -1,4 +1,4 @@
-package parser;
+package dog.parser;
 
 /**
  * Handles parsing of user input into commands.

@@ -1,9 +1,9 @@
-package model;
+package dog.model;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import exceptions.DogException;
+import dog.exceptions.DogException;
 
 /**
  * Represents a todo task that needs to be done without a specific deadline.

@@ -1,4 +1,4 @@
-package exceptions;
+package dog.exceptions;
 
 /**
  * Custom exception class for the Dog application.
