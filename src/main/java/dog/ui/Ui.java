@@ -19,29 +19,6 @@ public class Ui {
     private static final String FAREWELL = "WOOF Goodbye! WOOF WOOF";
 
     /**
-     * Displays the welcome banner and greeting.
-     */
-    public void showWelcome() {
-        System.out.println(BANNER);
-        System.out.println(GREETING);
-        System.out.println(LINE);
-    }
-
-    /**
-     * Displays a farewell message.
-     */
-    public void showGoodbye() {
-        System.out.println(FAREWELL);
-    }
-
-    /**
-     * Displays a separator line.
-     */
-    public void showLine() {
-        System.out.println(LINE);
-    }
-
-    /**
      * Displays a message to the user.
      *
      * @param message the message to display.
@@ -51,12 +28,35 @@ public class Ui {
     }
 
     /**
+     * Displays the welcome banner and greeting.
+     */
+    public void showWelcome() {
+        showMessage(BANNER);
+        showMessage(GREETING);
+        showMessage(LINE);
+    }
+
+    /**
+     * Displays a farewell message.
+     */
+    public void showGoodbye() {
+        showMessage(FAREWELL);
+    }
+
+    /**
+     * Displays a separator line.
+     */
+    public void showLine() {
+        showMessage(LINE);
+    }
+
+    /**
      * Displays an error message with a dog-themed prefix.
      *
      * @param message the error message to display.
      */
     public void showError(String message) {
-        System.out.println("WOOF WOOF there is something wrong:\n" + message);
+        showMessage("WOOF WOOF there is something wrong:\n" + message);
     }
 
     /**
@@ -103,6 +103,6 @@ public class Ui {
      * Displays a message prompting the user to provide a non-empty input.
      */
     public void askForInput() {
-        System.out.println("...say something? woof...");
+        showMessage("...say something? woof...");
     }
 }
