@@ -11,7 +11,7 @@ import dog.model.Task;
 import dog.model.Todo;
 
 /**
- * Handles loading and saving tasks to a file dog.storage.
+ * Handles loading and saving tasks to a file storage.
  */
 public class Storage {
     private final String filePath;
@@ -19,14 +19,14 @@ public class Storage {
     /**
      * Creates a Storage instance with the specified file path.
      *
-     * @param filePath the path to the dog.storage file.
+     * @param filePath the path to the storage file.
      */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
     /**
-     * Loads a task list from the dog.storage file.
+     * Loads a task list from the storage file.
      *
      * @return an ArrayList of loaded tasks, or an empty list if the file doesn't exist.
      */
@@ -52,7 +52,7 @@ public class Storage {
     }
 
     /**
-     * Saves a task list to the dog.storage file.
+     * Saves a task list to the storage file.
      *
      * @param tasks the list of tasks to save.
      */
@@ -72,7 +72,7 @@ public class Storage {
     }
 
     /**
-     * Parses a task from a line of the dog.storage file.
+     * Parses a task from a line of the storage file.
      *
      * @param line the line to parse.
      * @return the parsed Task, or null if the line format is invalid.

@@ -43,10 +43,10 @@ public class DateUtils {
     }
 
     /**
-     * Parses a date string and returns it in ISO format (yyyy-MM-dd) for dog.storage.
+     * Parses a date string and returns it in ISO format (yyyy-MM-dd) for storage.
      *
      * @param dateStr the input date string (yyyy-MM-dd).
-     * @return the date in ISO format for reliable dog.storage.
+     * @return the date in ISO format for reliable storage.
      * @throws DogException if the date string is invalid.
      */
     public static String toSaveFormat(String dateStr) throws DogException {

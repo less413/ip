@@ -13,7 +13,7 @@ import dog.storage.Storage;
 import dog.ui.Ui;
 
 /**
- * dog.Main entry point for the Dog task management application.
+ * Main entry point for the Dog task management application.
  * Initializes the application components and handles the main interaction loop.
  */
 public class Main {
@@ -21,7 +21,7 @@ public class Main {
     private static final Ui UI = new Ui();
 
     /**
-     * dog.Main method that starts the Dog application.
+     * Starts the Dog application.
      * Shows welcome message, loads tasks, and processes user commands until exit.
      *
      * @param args command line arguments (not used).
