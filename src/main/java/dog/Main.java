@@ -55,7 +55,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setMinHeight(640);
             stage.setMinWidth(480);
-            fxmlLoader.<MainWindow>getController().setDog(DOG);  // inject the Dog instance
+            fxmlLoader.<MainWindow>getController().setDog(DOG); // inject the Dog instance
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
