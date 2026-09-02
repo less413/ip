@@ -16,9 +16,9 @@ import javafx.stage.Stage;
  * Main entry point for the Dog application.
  */
 public class Main extends Application {
-    private static final Scanner SCANNER = new Scanner(System.in);
-    private static final Dog DOG = new Dog();
-    private static final Ui UI = new Ui();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final Dog dog = new Dog();
+    private static final Ui ui = new Ui();
 
     /**
      * Starts the Dog console application.
@@ -27,23 +27,23 @@ public class Main extends Application {
      * @param args command line arguments (not used).
      */
     public static void main(String[] args) {
-        UI.showDogMessage(DOG.getWelcomeString());
+        ui.showDogMessage(dog.getWelcomeString());
 
-        while (SCANNER.hasNextLine()) {
-            String input = SCANNER.nextLine();
+        while (scanner.hasNextLine()) {
+            String input = scanner.nextLine();
             try {
-                Dog.CommandResult result = DOG.processInput(input);
-                UI.showDogMessage(result.getMessage());
+                Dog.CommandResult result = dog.processInput(input);
+                ui.showDogMessage(result.getMessage());
 
                 if (result.shouldExit()) {
                     break;
                 }
             } catch (DogException e) {
-                UI.showErrorMessage(e.getMessage());
+                ui.showErrorMessage(e.getMessage());
             }
         }
 
-        SCANNER.close();
+        scanner.close();
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setMinHeight(640);
             stage.setMinWidth(480);
-            fxmlLoader.<MainWindow>getController().setDog(DOG); // inject the Dog instance
+            fxmlLoader.<MainWindow>getController().setDog(dog); // inject the Dog instance
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

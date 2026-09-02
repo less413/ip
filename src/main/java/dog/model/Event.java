@@ -88,7 +88,7 @@ public class Event extends Task {
      * @throws DogException if the input format is invalid.
      */
     public static Event parse(String input) throws DogException {
-        final String BAD_INPUT_MESSAGE = "Event tasks must have a description, a start date, and an end date!\n"
+        final String badInputMessage = "Event tasks must have a description, a start date, and an end date!\n"
                 + "Expected: event <description> /from <start date> /to <end date>";
 
         // Pattern: " <description> /from <from> /to <to>"
@@ -96,7 +96,7 @@ public class Event extends Task {
         Matcher matcher = pattern.matcher(input);
 
         if (!matcher.matches()) {
-            throw new DogException(BAD_INPUT_MESSAGE);
+            throw new DogException(badInputMessage);
         }
 
         String description = matcher.group(1).trim();
@@ -104,7 +104,7 @@ public class Event extends Task {
         String toStr = matcher.group(3).trim();
 
         if (description.isEmpty() || fromStr.isEmpty() || toStr.isEmpty()) {
-            throw new DogException(BAD_INPUT_MESSAGE);
+            throw new DogException(badInputMessage);
         }
 
         LocalDate from = DateUtils.parse(fromStr);

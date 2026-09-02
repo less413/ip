@@ -81,7 +81,7 @@ public class Deadline extends Task {
      * @throws DogException if the input format is invalid.
      */
     public static Deadline parse(String input) throws DogException {
-        final String BAD_INPUT_MESSAGE = "Deadline tasks must have a description and deadline!\n"
+        final String badInputMessage = "Deadline tasks must have a description and deadline!\n"
                 + "Expected: deadline <description> /by <deadline>";
 
         // Pattern: " <description> /by <by>" where <by> is in yyyy-MM-dd format
@@ -89,14 +89,14 @@ public class Deadline extends Task {
         Matcher matcher = pattern.matcher(input);
 
         if (!matcher.matches()) {
-            throw new DogException(BAD_INPUT_MESSAGE);
+            throw new DogException(badInputMessage);
         }
 
         String description = matcher.group(1).trim();
         String byStr = matcher.group(2).trim();
 
         if (description.isEmpty() || byStr.isEmpty()) {
-            throw new DogException(BAD_INPUT_MESSAGE);
+            throw new DogException(badInputMessage);
         }
 
         LocalDate by = DateUtils.parse(byStr);
