@@ -1,7 +1,10 @@
 package dog.storage;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -59,14 +62,14 @@ public class Storage {
     public void save(ArrayList<Task> tasks) {
         try {
             File file = new File(filePath);
-            java.io.FileWriter fileWriter = new java.io.FileWriter(file);
-            java.io.BufferedWriter writer = new java.io.BufferedWriter(fileWriter);
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter writer = new BufferedWriter(fileWriter);
             for (Task task : tasks) {
                 writer.write(task.toSaveFormat());
                 writer.newLine();
             }
             writer.close();
-        } catch (java.io.IOException e) {
+        } catch (IOException e) {
             System.out.println("Error saving tasks: " + e.getMessage());
         }
     }
@@ -78,23 +81,18 @@ public class Storage {
      * @return the parsed Task, or null if the line format is invalid.
      */
     private Task parseTask(String line) {
-        try {
-            String[] parts = line.split(" \\| ", 2);
-            String type = parts[0].trim();
+        String[] parts = line.split(" \\| ", 2);
+        String type = parts[0].trim();
 
-            switch (type) {
-                case "T":
-                    return Todo.fromSaveFormat(line);
-                case "D":
-                    return Deadline.fromSaveFormat(line);
-                case "E":
-                    return Event.fromSaveFormat(line);
-                default:
-                    return null;
-            }
-        } catch (Exception e) {
-            System.out.println("Error parsing task line: " + line);
-            return null;
+        switch (type) {
+            case "T":
+                return Todo.fromSaveFormat(line);
+            case "D":
+                return Deadline.fromSaveFormat(line);
+            case "E":
+                return Event.fromSaveFormat(line);
+            default:
+                return null;
         }
     }
 }
