@@ -12,9 +12,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.layout.Region;
 
 /**
  * Main entry point for the Dog application.
@@ -128,13 +128,13 @@ public class Main extends Application {
     private void handleUserInput() {
         String userText = userInput.getText();
         // add user chat bubble
-        dialogContainer.getChildren().add(new DialogBox(userText, USER_IMAGE));
+        dialogContainer.getChildren().add(DialogBox.getUserDialog(userText, USER_IMAGE));
 
         try {
             Dog.CommandResult result = DOG.processInput(userText);
             String dogText = result.getMessage();
             // add dog chat bubble
-            dialogContainer.getChildren().add(new DialogBox(dogText, DOG_IMAGE));
+            dialogContainer.getChildren().add(DialogBox.getDogDialog(dogText, DOG_IMAGE));
 
             if (result.shouldExit()) {
                 // TODO close the window
@@ -142,7 +142,7 @@ public class Main extends Application {
         } catch (DogException e) {
             String dogText = e.getMessage();
             // add dog chat bubble
-            dialogContainer.getChildren().add(new DialogBox(dogText, DOG_IMAGE));
+            dialogContainer.getChildren().add(DialogBox.getDogDialog(dogText, DOG_IMAGE));
         }
 
         userInput.clear();
