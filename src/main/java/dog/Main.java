@@ -6,6 +6,7 @@ import dog.exceptions.DogException;
 import dog.ui.DialogBox;
 import dog.ui.Ui;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -137,7 +138,7 @@ public class Main extends Application {
             dialogContainer.getChildren().add(DialogBox.getDogDialog(dogText, DOG_IMAGE));
 
             if (result.shouldExit()) {
-                // TODO close the window
+                Platform.exit();
             }
         } catch (DogException e) {
             String dogText = e.getMessage();
