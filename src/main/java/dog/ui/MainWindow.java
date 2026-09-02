@@ -25,8 +25,8 @@ public class MainWindow extends AnchorPane {
 
     private Dog dog;
 
-    private final Image USER_IMAGE = new Image(this.getClass().getResourceAsStream("/images/AvatarUser.png"));
-    private final Image DOG_IMAGE = new Image(this.getClass().getResourceAsStream("/images/AvatarDog.jpg"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/AvatarUser.png"));
+    private final Image dogImage = new Image(this.getClass().getResourceAsStream("/images/AvatarDog.jpg"));
 
     @FXML
     public void initialize() {
@@ -46,13 +46,13 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String userText = userInput.getText();
         // add user chat bubble
-        dialogContainer.getChildren().add(DialogBox.getUserDialog(userText, USER_IMAGE));
+        dialogContainer.getChildren().add(DialogBox.getUserDialog(userText, userImage));
 
         try {
             Dog.CommandResult result = dog.processInput(userText);
             String dogText = result.getMessage();
             // add dog chat bubble
-            dialogContainer.getChildren().add(DialogBox.getDogDialog(dogText, DOG_IMAGE));
+            dialogContainer.getChildren().add(DialogBox.getDogDialog(dogText, dogImage));
 
             if (result.shouldExit()) {
                 Platform.exit();
@@ -60,7 +60,7 @@ public class MainWindow extends AnchorPane {
         } catch (DogException e) {
             String dogText = e.getMessage();
             // add dog chat bubble
-            dialogContainer.getChildren().add(DialogBox.getDogDialog(dogText, DOG_IMAGE));
+            dialogContainer.getChildren().add(DialogBox.getDogDialog(dogText, dogImage));
         }
 
         userInput.clear();
