@@ -53,7 +53,7 @@ test {
 }
 
 application {
-    mainClass = 'dog/Main'
+    mainClass = 'dog/Launcher'
 }
 
 jar {
