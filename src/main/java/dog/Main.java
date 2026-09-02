@@ -52,6 +52,8 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setMinHeight(640);
+            stage.setMinWidth(480);
             fxmlLoader.<MainWindow>getController().setDog(DOG);  // inject the Dog instance
             stage.show();
         } catch (IOException e) {
