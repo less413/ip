@@ -69,8 +69,14 @@ public class Main extends Application {
         userInput = new TextField();
         sendButton = new Button("Send");
 
-        DialogBox dialogBox = new DialogBox("Hello!", USER_IMAGE);
-        dialogContainer.getChildren().addAll(dialogBox);
+        //Handling user input
+
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
@@ -107,9 +113,37 @@ public class Main extends Application {
         AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
-        // More code to be added here later
+        // Scroll down to the end every time dialogContainer's height changes.
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    /**
+     * Creates a dialog box containing user input, and appends it to
+     * the dialog container. Clears the user input after processing.
+     */
+    private void handleUserInput() {
+        String userText = userInput.getText();
+        // add user chat bubble
+        dialogContainer.getChildren().add(new DialogBox(userText, USER_IMAGE));
+
+        try {
+            Dog.CommandResult result = DOG.processInput(userText);
+            String dogText = result.getMessage();
+            // add dog chat bubble
+            dialogContainer.getChildren().add(new DialogBox(dogText, DOG_IMAGE));
+
+            if (result.shouldExit()) {
+                // TODO close the window
+            }
+        } catch (DogException e) {
+            String dogText = e.getMessage();
+            // add dog chat bubble
+            dialogContainer.getChildren().add(new DialogBox(dogText, DOG_IMAGE));
+        }
+
+        userInput.clear();
     }
 }
