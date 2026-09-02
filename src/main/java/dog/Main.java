@@ -1,29 +1,37 @@
 package dog;
 
+import dog.exceptions.DogException;
+import dog.ui.Ui;
+
 import java.util.Scanner;
 
 /**
  * Main entry point for the Dog task management application.
- * Handles only the scanning of commands from user input.
- * Delegates all processing to the Dog class.
  */
 public class Main {
     private static final Scanner SCANNER = new Scanner(System.in);
+    private static final Dog dog = new Dog();
+    private static final Ui ui = new Ui();
 
     /**
-     * Main method that starts the Dog application.
-     * Initializes the Dog instance and passes user input to it.
+     * Orchestrates between user input, Dog processing, and UI display.
      *
      * @param args command line arguments (not used).
      */
     public static void main(String[] args) {
-        Dog dog = new Dog();
-        dog.run();
+        ui.showDogMessage(dog.getWelcomeString());
 
         while (SCANNER.hasNextLine()) {
             String input = SCANNER.nextLine();
-            if (!dog.handleInput(input)) {
-                break; // Exit loop when BYE received
+            try {
+                Dog.CommandResult result = dog.processInput(input);
+                ui.showDogMessage(result.getMessage());
+
+                if (result.shouldExit()) {
+                    break;
+                }
+            } catch (DogException e) {
+                ui.showErrorMessage(e.getMessage());
             }
         }
 
