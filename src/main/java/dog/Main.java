@@ -9,6 +9,7 @@ import dog.ui.Ui;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -19,6 +20,8 @@ public class Main extends Application {
     private static final Scanner scanner = new Scanner(System.in);
     private static final Dog dog = new Dog();
     private static final Ui ui = new Ui();
+
+    private final Image appIcon = new Image(this.getClass().getResourceAsStream("/images/AvatarDog.jpg"));
 
     /**
      * Starts the Dog console application.
@@ -55,6 +58,8 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setMinHeight(640);
             stage.setMinWidth(480);
+            stage.setTitle("im a dog woof woof");
+            stage.getIcons().add(appIcon); // set window icon to dog image
             fxmlLoader.<MainWindow>getController().setDog(dog); // inject the Dog instance
             stage.show();
         } catch (IOException e) {
