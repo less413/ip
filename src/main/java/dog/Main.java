@@ -86,6 +86,7 @@ public class Main extends Application {
         // Formatting the window to look as expected
 
         stage.setTitle("i'm a dog woof woof");
+        stage.getIcons().add(DOG_IMAGE); // sets window icon to dog image
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
