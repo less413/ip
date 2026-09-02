@@ -1,7 +1,7 @@
 package dog.ui;
 
 /**
- * Handles user interface interactions.
+ * Handles console user interface interactions.
  */
 public class Ui {
     public static final String LINE = "____________________________________________________________";
