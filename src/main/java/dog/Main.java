@@ -1,9 +1,9 @@
 package dog;
 
+import java.util.Scanner;
+
 import dog.exceptions.DogException;
 import dog.ui.Ui;
-
-import java.util.Scanner;
 
 /**
  * Main entry point for the Dog task management application.

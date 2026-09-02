@@ -1,9 +1,9 @@
 package dog;
 
 import dog.exceptions.DogException;
-import dog.model.Task;
 import dog.model.Deadline;
 import dog.model.Event;
+import dog.model.Task;
 import dog.model.TaskList;
 import dog.model.Todo;
 import dog.parser.Parser;
@@ -47,6 +47,9 @@ public class Dog {
         private final String message;
         private final boolean shouldExit;
 
+        /**
+         * Constructs a new CommandResult instance.
+         */
         public CommandResult(String message, boolean shouldExit) {
             this.message = message;
             this.shouldExit = shouldExit;
@@ -126,8 +129,8 @@ public class Dog {
             if (index >= 0 && index < taskList.size()) {
                 Task deletedTask = taskList.deleteTask(index);
                 STORAGE.save(taskList.getTasks());
-                return "WOOF! I've deleted this task:\n " + deletedTask +
-                        "\nYou have " + taskList.size() + " tasks left in your list! WOOF!";
+                return "WOOF! I've deleted this task:\n " + deletedTask
+                        + "\nYou have " + taskList.size() + " tasks left in your list! WOOF!";
             } else {
                 throw new DogException("Task index out of bounds.");
             }
