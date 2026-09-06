@@ -103,6 +103,7 @@ public class Event extends Task {
             throw new DogException(badInputMessage);
         }
 
+        assert matcher.groupCount() == 3 : "Todo regex group count should be 3";
         String description = matcher.group(1).trim();
         String fromStr = matcher.group(2).trim();
         String toStr = matcher.group(3).trim();
@@ -113,6 +114,8 @@ public class Event extends Task {
 
         LocalDate fromDate = DateUtils.parse(fromStr);
         LocalDate toDate = DateUtils.parse(toStr);
+        assert fromDate != null : "parsed start (from) LocalDate should not be null";
+        assert toDate != null : "parsed end (to) LocalDate should not be null";
         return new Event(description, fromDate, toDate);
     }
 

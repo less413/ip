@@ -81,6 +81,7 @@ public class Todo extends Task {
             throw new DogException(badInputMessage);
         }
 
+        assert matcher.groupCount() == 1 : "Todo regex group count should be 1";
         String description = matcher.group(1).trim();
 
         if (description.isEmpty()) {

@@ -58,7 +58,9 @@ public class TaskList {
      */
     public void markTask(int index) throws DogException {
         try {
-            tasks.get(index).markAsDone();
+            Task taskToMark = tasks.get(index);
+            assert taskToMark != null : "task to be marked should not be null";
+            taskToMark.markAsDone();
         } catch (IndexOutOfBoundsException e) {
             throw new DogException("Task index out of bounds.");
         }
