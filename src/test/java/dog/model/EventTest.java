@@ -10,19 +10,31 @@ public class EventTest {
     @Test
     public void toSaveFormat_validDescription_returnsSaveFormat() {
         // Test done event
-        Event doneEvent = new Event("cry to sleep", java.time.LocalDate.of(2026, 8, 8), java.time.LocalDate.of(2026, 8, 10), true);
+        Event doneEvent = new Event("cry to sleep",
+                java.time.LocalDate.of(2026, 8, 8),
+                java.time.LocalDate.of(2026, 8, 10),
+                true);
         assertEquals("E | X | 2026-08-08 | 2026-08-10 | cry to sleep", doneEvent.toSaveFormat());
 
         // Test pending event
-        Event pendingEvent = new Event("survive 2103t", java.time.LocalDate.of(2026, 8, 9), java.time.LocalDate.of(2026, 8, 11), false);
+        Event pendingEvent = new Event("survive 2103t",
+                java.time.LocalDate.of(2026, 8, 9),
+                java.time.LocalDate.of(2026, 8, 11),
+                false);
         assertEquals("E |   | 2026-08-09 | 2026-08-11 | survive 2103t", pendingEvent.toSaveFormat());
 
         // Test description with spaces
-        Event spacesEvent = new Event("  a  b   c ", java.time.LocalDate.of(2026, 8, 10), java.time.LocalDate.of(2026, 8, 12), false);
+        Event spacesEvent = new Event("  a  b   c ", java.time.LocalDate.of(2026,
+                8, 10),
+                java.time.LocalDate.of(2026, 8, 12),
+                false);
         assertEquals("E |   | 2026-08-10 | 2026-08-12 |   a  b   c ", spacesEvent.toSaveFormat());
 
         // Test description with pipes
-        Event pipesEvent = new Event(" || d | e |   | f ", java.time.LocalDate.of(2026, 8, 11), java.time.LocalDate.of(2026, 8, 13), true);
+        Event pipesEvent = new Event(" || d | e |   | f ",
+                java.time.LocalDate.of(2026, 8, 11),
+                java.time.LocalDate.of(2026, 8, 13),
+                true);
         assertEquals("E | X | 2026-08-11 | 2026-08-13 |  || d | e |   | f ", pipesEvent.toSaveFormat());
     }
 
@@ -40,8 +52,10 @@ public class EventTest {
     @Test
     public void fromSaveFormat_specialCharacters_preservesDescription() {
         // Test description with special characters
-        Event specialCharEvent = Event.fromSaveFormat("E | X | 2026-08-08 | 2026-08-10 | cry @home #urgent!#%&^(*^_)_){}/.,./';}{|");
-        assertEquals("E | X | 2026-08-08 | 2026-08-10 | cry @home #urgent!#%&^(*^_)_){}/.,./';}{|", specialCharEvent.toSaveFormat());
+        Event specialCharEvent = Event.fromSaveFormat("E | X | 2026-08-08 | 2026-08-10 | "
+                + "cry @home #urgent!#%&^(*^_)_){}/.,./';}{|");
+        assertEquals("E | X | 2026-08-08 | 2026-08-10 | cry @home #urgent!#%&^(*^_)_){}/.,./';}{|",
+                specialCharEvent.toSaveFormat());
 
         // Test description with pipe characters
         Event pipeCharPendingEvent = Event.fromSaveFormat("E |   | 2026-08-08 | 2026-08-10 | X | cry");
