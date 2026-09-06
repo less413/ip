@@ -104,6 +104,7 @@ public class Dog {
             case EVENT:
                 return new CommandResult(handleAddEvent(rest), false);
             default:
+                assert false : "Unexpected command state";
                 return new CommandResult("", false);
         }
     }
