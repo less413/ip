@@ -84,28 +84,40 @@ public class Dog {
         }
 
         String rest = command.getCommandRest(trimmedInput);
+        String reply;
 
         switch (command) {
             case BYE:
                 STORAGE.save(taskList.getTasks());
                 return new CommandResult(FAREWELL, true);
             case LIST:
-                return new CommandResult("Here are the tasks in your list:\n" + taskList, false);
+                reply = handlePrintList();
+                return new CommandResult(reply, false);
             case MARK:
-                return new CommandResult(handleMarkTask(rest), false);
+                reply = handleMarkTask(rest);
+                return new CommandResult(reply, false);
             case DELETE:
-                return new CommandResult(handleDeleteTask(rest), false);
+                reply = handleDeleteTask(rest);
+                return new CommandResult(reply, false);
             case FIND:
-                return new CommandResult(handleFindTasks(rest), false);
+                reply = handleFindTasks(rest);
+                return new CommandResult(reply, false);
             case TODO:
-                return new CommandResult(handleAddTodo(rest), false);
+                reply = handleAddTodo(rest);
+                return new CommandResult(reply, false);
             case DEADLINE:
-                return new CommandResult(handleAddDeadline(rest), false);
+                reply = handleAddDeadline(rest);
+                return new CommandResult(reply, false);
             case EVENT:
-                return new CommandResult(handleAddEvent(rest), false);
+                reply = handleAddEvent(rest);
+                return new CommandResult(reply, false);
             default:
                 return new CommandResult("", false);
         }
+    }
+
+    private String handlePrintList() {
+        return "Here are the tasks in your list:\n" + taskList;
     }
 
     private String handleMarkTask(String rest) throws DogException {
