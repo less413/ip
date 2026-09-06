@@ -40,22 +40,30 @@ public class TaskList {
      *
      * @param index the index of the task to delete (0-based).
      * @return the deleted task.
-     * @throws IndexOutOfBoundsException if index is out of bounds.
+     * @throws DogException if index is out of bounds.
      */
-    public Task deleteTask(int index) {
-        return tasks.remove(index);
+    public Task deleteTask(int index) throws DogException {
+        try {
+            return tasks.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DogException("Task index out of bounds.");
+        }
     }
 
     /**
      * Marks a task as done at the specified index.
      *
      * @param index the index of the task to mark (0-based).
-     * @throws IndexOutOfBoundsException if index is out of bounds.
+     * @throws DogException if index is out of bounds.
      */
-    public void markTask(int index) {
-        Task taskToMark = tasks.get(index);
-        assert taskToMark != null : "task to be marked should not be null";
-        taskToMark.markAsDone();
+    public void markTask(int index) throws DogException {
+        try {
+            Task taskToMark = tasks.get(index);
+            assert taskToMark != null : "task to be marked should not be null";
+            taskToMark.markAsDone();
+        } catch (IndexOutOfBoundsException e) {
+            throw new DogException("Task index out of bounds.");
+        }
     }
 
     /**
@@ -129,13 +137,12 @@ public class TaskList {
     public String toString() {
         if (tasks.isEmpty()) {
             return " (No tasks found)";
-        } else {
-            assert tasks.size() > 0;
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < tasks.size(); i++) {
-                sb.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");
-            }
-            return sb.toString().trim();
         }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < tasks.size(); i++) {
+            sb.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");
+        }
+        return sb.toString().trim();
     }
 }

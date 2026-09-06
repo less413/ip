@@ -9,6 +9,8 @@ import dog.exceptions.DogException;
  * Represents a todo task that needs to be done without a specific deadline.
  */
 public class Todo extends Task {
+    static final String TASK_ICON = "T";
+
     /**
      * Creates a todo task with the specified description.
      *
@@ -48,12 +50,14 @@ public class Todo extends Task {
         String statusIcon = parts[1];
         String description = parts[2];
 
-        // Return null if task/status icon is invalid
-        if (!taskIcon.equals("T") || !statusIcon.equals("X") && !statusIcon.equals(" ")) {
+        if (!taskIcon.equals(TASK_ICON)) {
+            return null;
+        }
+        if (isInvalidStatusIcon(statusIcon)) {
             return null;
         }
 
-        boolean isDone = statusIcon.equals("X");
+        boolean isDone = isCompletedStatusIcon(statusIcon);
 
         return new Todo(description, isDone);
     }
@@ -94,7 +98,7 @@ public class Todo extends Task {
      */
     @Override
     public String toSaveFormat() {
-        return String.format("T | %s | %s", getStatusIcon(), description);
+        return String.format(TASK_ICON + " | %s | %s", getStatusIcon(), description);
     }
 
     /**
@@ -104,6 +108,6 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "[" + TASK_ICON + "]" + super.toString();
     }
 }

@@ -84,41 +84,49 @@ public class Dog {
         }
 
         String rest = command.getCommandRest(trimmedInput);
+        String reply;
 
         switch (command) {
             case BYE:
                 STORAGE.save(taskList.getTasks());
                 return new CommandResult(FAREWELL, true);
             case LIST:
-                return new CommandResult("Here are the tasks in your list:\n" + taskList, false);
+                reply = handlePrintList();
+                return new CommandResult(reply, false);
             case MARK:
-                return new CommandResult(handleMarkTask(rest), false);
+                reply = handleMarkTask(rest);
+                return new CommandResult(reply, false);
             case DELETE:
-                return new CommandResult(handleDeleteTask(rest), false);
+                reply = handleDeleteTask(rest);
+                return new CommandResult(reply, false);
             case FIND:
-                return new CommandResult(handleFindTasks(rest), false);
+                reply = handleFindTasks(rest);
+                return new CommandResult(reply, false);
             case TODO:
-                return new CommandResult(handleAddTodo(rest), false);
+                reply = handleAddTodo(rest);
+                return new CommandResult(reply, false);
             case DEADLINE:
-                return new CommandResult(handleAddDeadline(rest), false);
+                reply = handleAddDeadline(rest);
+                return new CommandResult(reply, false);
             case EVENT:
-                return new CommandResult(handleAddEvent(rest), false);
+                reply = handleAddEvent(rest);
+                return new CommandResult(reply, false);
             default:
                 assert false : "Unexpected command state";
                 return new CommandResult("", false);
         }
     }
 
+    private String handlePrintList() {
+        return "Here are the tasks in your list:\n" + taskList;
+    }
+
     private String handleMarkTask(String rest) throws DogException {
         try {
             int index = Integer.parseInt(rest.trim()) - 1;
-            if (index >= 0 && index < taskList.size()) {
-                taskList.markTask(index);
-                STORAGE.save(taskList.getTasks());
-                return "WOOF! I've marked this task as done:\n " + taskList.getTask(index);
-            } else {
-                throw new DogException("Task index out of bounds.");
-            }
+            taskList.markTask(index);
+            STORAGE.save(taskList.getTasks());
+            return "WOOF! I've marked this task as done:\n " + taskList.getTask(index);
         } catch (NumberFormatException e) {
             throw new DogException("Please provide a valid task number. (e.g., 'mark 2').");
         }
@@ -127,14 +135,10 @@ public class Dog {
     private String handleDeleteTask(String rest) throws DogException {
         try {
             int index = Integer.parseInt(rest.trim()) - 1;
-            if (index >= 0 && index < taskList.size()) {
-                Task deletedTask = taskList.deleteTask(index);
-                STORAGE.save(taskList.getTasks());
-                return "WOOF! I've deleted this task:\n " + deletedTask
-                        + "\nYou have " + taskList.size() + " tasks left in your list! WOOF!";
-            } else {
-                throw new DogException("Task index out of bounds.");
-            }
+            Task deletedTask = taskList.deleteTask(index);
+            STORAGE.save(taskList.getTasks());
+            return "WOOF! I've deleted this task:\n " + deletedTask
+                    + "\nYou have " + taskList.size() + " tasks left in your list! WOOF!";
         } catch (NumberFormatException e) {
             throw new DogException("Please provide a valid task number. (e.g., 'delete 2').");
         }
@@ -149,24 +153,24 @@ public class Dog {
     private String handleAddTodo(String rest) throws DogException {
         Task newTodo = Todo.parse(rest);
         assert newTodo != null : "parsed Todo should not be null";
-        taskList.addTask(newTodo);
-        STORAGE.save(taskList.getTasks());
-        return "WOOF! I've added a new task: \n" + newTodo;
+        return handleAddTask(newTodo);
     }
 
     private String handleAddDeadline(String rest) throws DogException {
         Task newDeadline = Deadline.parse(rest);
         assert newDeadline != null : "parsed Deadline should not be null";
-        taskList.addTask(newDeadline);
-        STORAGE.save(taskList.getTasks());
-        return "WOOF! I've added a new task: \n" + newDeadline;
+        return handleAddTask(newDeadline);
     }
 
     private String handleAddEvent(String rest) throws DogException {
         Task newEvent = Event.parse(rest);
         assert newEvent != null : "parsed Event should not be null";
-        taskList.addTask(newEvent);
+        return handleAddTask(newEvent);
+    }
+
+    private String handleAddTask(Task task) {
+        taskList.addTask(task);
         STORAGE.save(taskList.getTasks());
-        return "WOOF! I've added a new task: \n" + newEvent;
+        return "WOOF! I've added a new task: \n" + task;
     }
 }

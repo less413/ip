@@ -11,29 +11,31 @@ import dog.storage.DateUtils;
  * Represents a deadline task that must be completed by a specific date.
  */
 public class Deadline extends Task {
-    protected LocalDate by;
+    static final String TASK_ICON = "D";
+
+    protected LocalDate dueDate;
 
     /**
      * Creates a deadline task with the specified description and deadline date.
      *
      * @param description the task description.
-     * @param by          the deadline date.
+     * @param dueDate     the deadline date.
      */
-    public Deadline(String description, LocalDate by) {
+    public Deadline(String description, LocalDate dueDate) {
         super(description);
-        this.by = by;
+        this.dueDate = dueDate;
     }
 
     /**
      * Creates a deadline task with the specified description, deadline date, and completion status.
      *
      * @param description the task description.
-     * @param by          the deadline date.
+     * @param dueDate     the deadline date.
      * @param isDone      true if the task is completed, false otherwise.
      */
-    public Deadline(String description, LocalDate by, boolean isDone) {
+    public Deadline(String description, LocalDate dueDate, boolean isDone) {
         super(description, isDone);
-        this.by = by;
+        this.dueDate = dueDate;
     }
 
     /**
@@ -57,12 +59,14 @@ public class Deadline extends Task {
         String byStr = parts[2];
         String description = parts[3];
 
-        // Return null if task/status icon is invalid
-        if (!taskIcon.equals("D") || !statusIcon.equals("X") && !statusIcon.equals(" ")) {
+        if (!taskIcon.equals(TASK_ICON)) {
+            return null;
+        }
+        if (isInvalidStatusIcon(statusIcon)) {
             return null;
         }
 
-        boolean isDone = statusIcon.equals("X");
+        boolean isDone = isCompletedStatusIcon(statusIcon);
 
         try {
             LocalDate by = DateUtils.parse(byStr);
@@ -100,9 +104,9 @@ public class Deadline extends Task {
             throw new DogException(badInputMessage);
         }
 
-        LocalDate by = DateUtils.parse(byStr);
-        assert by != null : "parsed by LocalDate should not be null";
-        return new Deadline(description, by);
+        LocalDate dueDate = DateUtils.parse(byStr);
+        assert dueDate != null : "parsed due date (by) LocalDate should not be null";
+        return new Deadline(description, dueDate);
     }
 
     /**
@@ -112,7 +116,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toSaveFormat() {
-        return String.format("D | %s | %s | %s", getStatusIcon(), by.toString(), description);
+        return String.format(TASK_ICON + " | %s | %s | %s", getStatusIcon(), dueDate.toString(), description);
     }
 
     /**
@@ -122,6 +126,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + DateUtils.format(this.by) + ")";
+        return "[" + TASK_ICON + "]" + super.toString() + " (by: " + DateUtils.format(this.dueDate) + ")";
     }
 }

@@ -51,7 +51,7 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getDogDialog(String s, Image i) {
-        var db = new DialogBox(s, i);
+        DialogBox db = new DialogBox(s, i);
         db.flip();
         return db;
     }
