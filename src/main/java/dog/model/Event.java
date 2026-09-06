@@ -99,6 +99,7 @@ public class Event extends Task {
             throw new DogException(badInputMessage);
         }
 
+        assert matcher.groupCount() == 3 : "Todo regex group count should be 3";
         String description = matcher.group(1).trim();
         String fromStr = matcher.group(2).trim();
         String toStr = matcher.group(3).trim();
