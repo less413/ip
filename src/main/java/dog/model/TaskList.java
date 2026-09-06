@@ -53,7 +53,9 @@ public class TaskList {
      * @throws IndexOutOfBoundsException if index is out of bounds.
      */
     public void markTask(int index) {
-        tasks.get(index).markAsDone();
+        Task taskToMark = tasks.get(index);
+        assert taskToMark != null : "task to be marked should not be null";
+        taskToMark.markAsDone();
     }
 
     /**
