@@ -110,6 +110,8 @@ public class Event extends Task {
 
         LocalDate from = DateUtils.parse(fromStr);
         LocalDate to = DateUtils.parse(toStr);
+        assert from != null : "parsed from LocalDate should not be null";
+        assert to != null : "parsed to LocalDate should not be null";
         return new Event(description, from, to);
     }
 

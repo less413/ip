@@ -101,6 +101,7 @@ public class Deadline extends Task {
         }
 
         LocalDate by = DateUtils.parse(byStr);
+        assert by != null : "parsed by LocalDate should not be null";
         return new Deadline(description, by);
     }
 
