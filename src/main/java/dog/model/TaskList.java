@@ -40,20 +40,28 @@ public class TaskList {
      *
      * @param index the index of the task to delete (0-based).
      * @return the deleted task.
-     * @throws IndexOutOfBoundsException if index is out of bounds.
+     * @throws DogException if index is out of bounds.
      */
-    public Task deleteTask(int index) {
-        return tasks.remove(index);
+    public Task deleteTask(int index) throws DogException {
+        try {
+            return tasks.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DogException("Task index out of bounds.");
+        }
     }
 
     /**
      * Marks a task as done at the specified index.
      *
      * @param index the index of the task to mark (0-based).
-     * @throws IndexOutOfBoundsException if index is out of bounds.
+     * @throws DogException if index is out of bounds.
      */
-    public void markTask(int index) {
-        tasks.get(index).markAsDone();
+    public void markTask(int index) throws DogException {
+        try {
+            tasks.get(index).markAsDone();
+        } catch (IndexOutOfBoundsException e) {
+            throw new DogException("Task index out of bounds.");
+        }
     }
 
     /**

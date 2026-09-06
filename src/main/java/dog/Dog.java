@@ -111,13 +111,9 @@ public class Dog {
     private String handleMarkTask(String rest) throws DogException {
         try {
             int index = Integer.parseInt(rest.trim()) - 1;
-            if (index >= 0 && index < taskList.size()) {
-                taskList.markTask(index);
-                STORAGE.save(taskList.getTasks());
-                return "WOOF! I've marked this task as done:\n " + taskList.getTask(index);
-            } else {
-                throw new DogException("Task index out of bounds.");
-            }
+            taskList.markTask(index);
+            STORAGE.save(taskList.getTasks());
+            return "WOOF! I've marked this task as done:\n " + taskList.getTask(index);
         } catch (NumberFormatException e) {
             throw new DogException("Please provide a valid task number. (e.g., 'mark 2').");
         }
@@ -126,14 +122,10 @@ public class Dog {
     private String handleDeleteTask(String rest) throws DogException {
         try {
             int index = Integer.parseInt(rest.trim()) - 1;
-            if (index >= 0 && index < taskList.size()) {
-                Task deletedTask = taskList.deleteTask(index);
-                STORAGE.save(taskList.getTasks());
-                return "WOOF! I've deleted this task:\n " + deletedTask
-                        + "\nYou have " + taskList.size() + " tasks left in your list! WOOF!";
-            } else {
-                throw new DogException("Task index out of bounds.");
-            }
+            Task deletedTask = taskList.deleteTask(index);
+            STORAGE.save(taskList.getTasks());
+            return "WOOF! I've deleted this task:\n " + deletedTask
+                    + "\nYou have " + taskList.size() + " tasks left in your list! WOOF!";
         } catch (NumberFormatException e) {
             throw new DogException("Please provide a valid task number. (e.g., 'delete 2').");
         }
