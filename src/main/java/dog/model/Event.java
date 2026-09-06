@@ -11,34 +11,34 @@ import dog.storage.DateUtils;
  * Represents an event task that occurs within a specific time period.
  */
 public class Event extends Task {
-    protected LocalDate from;
-    protected LocalDate to;
+    protected LocalDate fromDate;
+    protected LocalDate toDate;
 
     /**
      * Creates an event task with the specified description and date range.
      *
      * @param description the task description.
-     * @param from        the start date of the event.
-     * @param to          the end date of the event.
+     * @param fromDate        the start date of the event.
+     * @param toDate          the end date of the event.
      */
-    public Event(String description, LocalDate from, LocalDate to) {
+    public Event(String description, LocalDate fromDate, LocalDate toDate) {
         super(description);
-        this.from = from;
-        this.to = to;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
     }
 
     /**
      * Creates an event task with the specified description, date range, and completion status.
      *
      * @param description the task description.
-     * @param from        the start date of the event.
-     * @param to          the end date of the event.
+     * @param fromDate        the start date of the event.
+     * @param toDate          the end date of the event.
      * @param isDone      true if the task is completed, false otherwise.
      */
-    public Event(String description, LocalDate from, LocalDate to, boolean isDone) {
+    public Event(String description, LocalDate fromDate, LocalDate toDate, boolean isDone) {
         super(description, isDone);
-        this.from = from;
-        this.to = to;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
     }
 
     /**
@@ -71,9 +71,9 @@ public class Event extends Task {
         boolean isDone = statusIcon.equals("X");
 
         try {
-            LocalDate from = DateUtils.parse(fromStr);
-            LocalDate to = DateUtils.parse(toStr);
-            return new Event(description, from, to, isDone);
+            LocalDate fromDate = DateUtils.parse(fromStr);
+            LocalDate toDate = DateUtils.parse(toStr);
+            return new Event(description, fromDate, toDate, isDone);
         } catch (DogException e) {
             System.out.println("Error loading event: " + e.getMessage());
             return null;
@@ -107,9 +107,9 @@ public class Event extends Task {
             throw new DogException(badInputMessage);
         }
 
-        LocalDate from = DateUtils.parse(fromStr);
-        LocalDate to = DateUtils.parse(toStr);
-        return new Event(description, from, to);
+        LocalDate fromDate = DateUtils.parse(fromStr);
+        LocalDate toDate = DateUtils.parse(toStr);
+        return new Event(description, fromDate, toDate);
     }
 
     /**
@@ -119,7 +119,8 @@ public class Event extends Task {
      */
     @Override
     public String toSaveFormat() {
-        return String.format("E | %s | %s | %s | %s", getStatusIcon(), from.toString(), to.toString(), description);
+        return String.format("E | %s | %s | %s | %s", getStatusIcon(),
+                fromDate.toString(), toDate.toString(), description);
     }
 
     /**
@@ -129,7 +130,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + DateUtils.format(this.from)
-                + " to: " + DateUtils.format(this.to) + ")";
+        return "[E]" + super.toString() + " (from: " + DateUtils.format(this.fromDate)
+                + " to: " + DateUtils.format(this.toDate) + ")";
     }
 }
