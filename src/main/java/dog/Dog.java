@@ -104,6 +104,7 @@ public class Dog {
             case EVENT:
                 return new CommandResult(handleAddEvent(rest), false);
             default:
+                assert false : "Unexpected command state";
                 return new CommandResult("", false);
         }
     }
@@ -147,6 +148,7 @@ public class Dog {
 
     private String handleAddTodo(String rest) throws DogException {
         Task newTodo = Todo.parse(rest);
+        assert newTodo != null : "parsed Todo should not be null";
         taskList.addTask(newTodo);
         STORAGE.save(taskList.getTasks());
         return "WOOF! I've added a new task: \n" + newTodo;
@@ -154,6 +156,7 @@ public class Dog {
 
     private String handleAddDeadline(String rest) throws DogException {
         Task newDeadline = Deadline.parse(rest);
+        assert newDeadline != null : "parsed Deadline should not be null";
         taskList.addTask(newDeadline);
         STORAGE.save(taskList.getTasks());
         return "WOOF! I've added a new task: \n" + newDeadline;
@@ -161,6 +164,7 @@ public class Dog {
 
     private String handleAddEvent(String rest) throws DogException {
         Task newEvent = Event.parse(rest);
+        assert newEvent != null : "parsed Event should not be null";
         taskList.addTask(newEvent);
         STORAGE.save(taskList.getTasks());
         return "WOOF! I've added a new task: \n" + newEvent;

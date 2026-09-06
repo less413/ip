@@ -92,6 +92,7 @@ public class Deadline extends Task {
             throw new DogException(badInputMessage);
         }
 
+        assert matcher.groupCount() == 2 : "Todo regex group count should be 2";
         String description = matcher.group(1).trim();
         String byStr = matcher.group(2).trim();
 
@@ -100,6 +101,7 @@ public class Deadline extends Task {
         }
 
         LocalDate by = DateUtils.parse(byStr);
+        assert by != null : "parsed by LocalDate should not be null";
         return new Deadline(description, by);
     }
 

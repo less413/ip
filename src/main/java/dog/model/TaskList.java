@@ -53,7 +53,9 @@ public class TaskList {
      * @throws IndexOutOfBoundsException if index is out of bounds.
      */
     public void markTask(int index) {
-        tasks.get(index).markAsDone();
+        Task taskToMark = tasks.get(index);
+        assert taskToMark != null : "task to be marked should not be null";
+        taskToMark.markAsDone();
     }
 
     /**
@@ -128,6 +130,7 @@ public class TaskList {
         if (tasks.isEmpty()) {
             return " (No tasks found)";
         } else {
+            assert tasks.size() > 0;
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < tasks.size(); i++) {
                 sb.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");

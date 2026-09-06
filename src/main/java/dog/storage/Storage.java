@@ -82,6 +82,7 @@ public class Storage {
      */
     private Task parseTask(String line) {
         String[] parts = line.split(" \\| ", 2);
+        assert parts.length > 0 : "parse result should not be empty";
         String type = parts[0].trim();
 
         switch (type) {
