@@ -151,22 +151,22 @@ public class Dog {
 
     private String handleAddTodo(String rest) throws DogException {
         Task newTodo = Todo.parse(rest);
-        taskList.addTask(newTodo);
-        STORAGE.save(taskList.getTasks());
-        return "WOOF! I've added a new task: \n" + newTodo;
+        return handleAddTask(newTodo);
     }
 
     private String handleAddDeadline(String rest) throws DogException {
         Task newDeadline = Deadline.parse(rest);
-        taskList.addTask(newDeadline);
-        STORAGE.save(taskList.getTasks());
-        return "WOOF! I've added a new task: \n" + newDeadline;
+        return handleAddTask(newDeadline);
     }
 
     private String handleAddEvent(String rest) throws DogException {
         Task newEvent = Event.parse(rest);
-        taskList.addTask(newEvent);
+        return handleAddTask(newEvent);
+    }
+
+    private String handleAddTask(Task task) {
+        taskList.addTask(task);
         STORAGE.save(taskList.getTasks());
-        return "WOOF! I've added a new task: \n" + newEvent;
+        return "WOOF! I've added a new task: \n" + task;
     }
 }
