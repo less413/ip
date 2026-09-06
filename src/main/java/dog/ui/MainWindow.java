@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 /**
  * Controller for the main GUI.
  */
@@ -33,7 +34,9 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Dog instance */
+    /**
+     * Injects the Dog instance
+     */
     public void setDog(Dog d) {
         dog = d;
     }
@@ -45,22 +48,23 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String userText = userInput.getText();
-        // add user chat bubble
-        dialogContainer.getChildren().add(DialogBox.getUserDialog(userText, userImage));
+        DialogBox userDialogBox = DialogBox.getUserDialog(userText, userImage);
+        dialogContainer.getChildren().add(userDialogBox);
 
         try {
             Dog.CommandResult result = dog.processInput(userText);
+
             String dogText = result.getMessage();
-            // add dog chat bubble
-            dialogContainer.getChildren().add(DialogBox.getDogDialog(dogText, dogImage));
+            DialogBox replyDialogBox = DialogBox.getDogDialog(dogText, dogImage);
+            dialogContainer.getChildren().add(replyDialogBox);
 
             if (result.shouldExit()) {
                 Platform.exit();
             }
         } catch (DogException e) {
             String dogText = e.getMessage();
-            // add dog chat bubble
-            dialogContainer.getChildren().add(DialogBox.getDogDialog(dogText, dogImage));
+            DialogBox errorDialogBox = DialogBox.getDogDialog(dogText, dogImage);
+            dialogContainer.getChildren().add(errorDialogBox);
         }
 
         userInput.clear();
