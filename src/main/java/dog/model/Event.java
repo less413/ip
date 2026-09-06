@@ -11,6 +11,8 @@ import dog.storage.DateUtils;
  * Represents an event task that occurs within a specific time period.
  */
 public class Event extends Task {
+    static final String TASK_ICON = "E";
+
     protected LocalDate fromDate;
     protected LocalDate toDate;
 
@@ -18,8 +20,8 @@ public class Event extends Task {
      * Creates an event task with the specified description and date range.
      *
      * @param description the task description.
-     * @param fromDate        the start date of the event.
-     * @param toDate          the end date of the event.
+     * @param fromDate    the start date of the event.
+     * @param toDate      the end date of the event.
      */
     public Event(String description, LocalDate fromDate, LocalDate toDate) {
         super(description);
@@ -31,8 +33,8 @@ public class Event extends Task {
      * Creates an event task with the specified description, date range, and completion status.
      *
      * @param description the task description.
-     * @param fromDate        the start date of the event.
-     * @param toDate          the end date of the event.
+     * @param fromDate    the start date of the event.
+     * @param toDate      the end date of the event.
      * @param isDone      true if the task is completed, false otherwise.
      */
     public Event(String description, LocalDate fromDate, LocalDate toDate, boolean isDone) {
@@ -63,12 +65,14 @@ public class Event extends Task {
         String toStr = parts[3];
         String description = parts[4];
 
-        // Return null if task/status icon is invalid
-        if (!taskIcon.equals("E") || !statusIcon.equals("X") && !statusIcon.equals(" ")) {
+        if (!taskIcon.equals(TASK_ICON)) {
+            return null;
+        }
+        if (isInvalidStatusIcon(statusIcon)) {
             return null;
         }
 
-        boolean isDone = statusIcon.equals("X");
+        boolean isDone = isCompletedStatusIcon(statusIcon);
 
         try {
             LocalDate fromDate = DateUtils.parse(fromStr);
@@ -119,7 +123,7 @@ public class Event extends Task {
      */
     @Override
     public String toSaveFormat() {
-        return String.format("E | %s | %s | %s | %s", getStatusIcon(),
+        return String.format(TASK_ICON + " | %s | %s | %s | %s", getStatusIcon(),
                 fromDate.toString(), toDate.toString(), description);
     }
 
@@ -130,7 +134,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + DateUtils.format(this.fromDate)
+        return "[" + TASK_ICON + "]" + super.toString() + " (from: " + DateUtils.format(this.fromDate)
                 + " to: " + DateUtils.format(this.toDate) + ")";
     }
 }

@@ -11,6 +11,8 @@ import dog.storage.DateUtils;
  * Represents a deadline task that must be completed by a specific date.
  */
 public class Deadline extends Task {
+    static final String TASK_ICON = "D";
+
     protected LocalDate dueDate;
 
     /**
@@ -57,12 +59,14 @@ public class Deadline extends Task {
         String byStr = parts[2];
         String description = parts[3];
 
-        // Return null if task/status icon is invalid
-        if (!taskIcon.equals("D") || !statusIcon.equals("X") && !statusIcon.equals(" ")) {
+        if (!taskIcon.equals(TASK_ICON)) {
+            return null;
+        }
+        if (isInvalidStatusIcon(statusIcon)) {
             return null;
         }
 
-        boolean isDone = statusIcon.equals("X");
+        boolean isDone = isCompletedStatusIcon(statusIcon);
 
         try {
             LocalDate by = DateUtils.parse(byStr);
@@ -110,7 +114,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toSaveFormat() {
-        return String.format("D | %s | %s | %s", getStatusIcon(), dueDate.toString(), description);
+        return String.format(TASK_ICON + " | %s | %s | %s", getStatusIcon(), dueDate.toString(), description);
     }
 
     /**
@@ -120,6 +124,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + DateUtils.format(this.dueDate) + ")";
+        return "[" + TASK_ICON + "]" + super.toString() + " (by: " + DateUtils.format(this.dueDate) + ")";
     }
 }

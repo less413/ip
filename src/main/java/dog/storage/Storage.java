@@ -8,10 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import dog.model.Deadline;
-import dog.model.Event;
 import dog.model.Task;
-import dog.model.Todo;
 
 /**
  * Handles loading and saving tasks to a file storage.
@@ -81,18 +78,6 @@ public class Storage {
      * @return the parsed Task, or null if the line format is invalid.
      */
     private Task parseTask(String line) {
-        String[] parts = line.split(" \\| ", 2);
-        String type = parts[0].trim();
-
-        switch (type) {
-            case "T":
-                return Todo.fromSaveFormat(line);
-            case "D":
-                return Deadline.fromSaveFormat(line);
-            case "E":
-                return Event.fromSaveFormat(line);
-            default:
-                return null;
-        }
+        return Task.fromSaveFormat(line);
     }
 }
