@@ -12,27 +12,6 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Checks if the given string is an invalid status icon.
-     *
-     * @param statusIcon the status icon.
-     * @return true if the status icon is invalid, false otherwise.
-     */
-    protected static boolean isInvalidStatusIcon(String statusIcon) {
-        return !statusIcon.equals(COMPLETE_STATUS_ICON) && !statusIcon.equals(INCOMPLETE_STATUS_ICON);
-    }
-
-    /**
-     * Checks if the given status icon represents a completed task.
-     * Method assumes the status is valid, as per <code>isInvalidStatusIcon</code>, otherwise behavior is undefined.
-     *
-     * @param statusIcon the valid status icon.
-     * @return true if the status icon is valid, false otherwise.
-     */
-    protected static boolean isCompletedStatusIcon(String statusIcon) {
-        return statusIcon.equals(COMPLETE_STATUS_ICON);
-    }
-
-    /**
      * Creates a task with the specified description.
      *
      * @param description the task description.
@@ -51,6 +30,27 @@ public abstract class Task {
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+    }
+
+    /**
+     * Checks if the given string is an invalid status icon.
+     *
+     * @param statusIcon the status icon.
+     * @return true if the status icon is invalid, false otherwise.
+     */
+    protected static boolean isInvalidStatusIcon(String statusIcon) {
+        return !statusIcon.equals(COMPLETE_STATUS_ICON) && !statusIcon.equals(INCOMPLETE_STATUS_ICON);
+    }
+
+    /**
+     * Checks if the given status icon represents a completed task.
+     * Method assumes the status is valid, as per <code>isInvalidStatusIcon</code>, otherwise behavior is undefined.
+     *
+     * @param statusIcon the valid status icon.
+     * @return true if the status icon is valid, false otherwise.
+     */
+    protected static boolean isCompletedStatusIcon(String statusIcon) {
+        return statusIcon.equals(COMPLETE_STATUS_ICON);
     }
 
     /**
