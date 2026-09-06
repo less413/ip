@@ -127,12 +127,12 @@ public class TaskList {
     public String toString() {
         if (tasks.isEmpty()) {
             return " (No tasks found)";
-        } else {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < tasks.size(); i++) {
-                sb.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");
-            }
-            return sb.toString().trim();
         }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < tasks.size(); i++) {
+            sb.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");
+        }
+        return sb.toString().trim();
     }
 }
