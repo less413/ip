@@ -6,7 +6,7 @@ import dog.model.Event;
 import dog.model.Task;
 import dog.model.TaskList;
 import dog.model.Todo;
-import dog.parser.Parser;
+import dog.parser.Command;
 import dog.storage.Storage;
 
 /**
@@ -78,7 +78,7 @@ public class Dog {
             return new CommandResult("...say something? woof...", false);
         }
 
-        Parser.Command command = Parser.Command.fromInput(trimmedInput);
+        Command command = Command.fromInput(trimmedInput);
         if (command == null) {
             throw new DogException("I don't understand what you're saying :(");
         }
