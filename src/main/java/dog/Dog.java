@@ -88,7 +88,7 @@ public class Dog {
 
         switch (command) {
             case BYE:
-                STORAGE.save(taskList.getTasks());
+                handleSaveTasksToStorage();
                 return new CommandResult(FAREWELL, true);
             case LIST:
                 reply = handlePrintList();
@@ -117,6 +117,10 @@ public class Dog {
         }
     }
 
+    private void handleSaveTasksToStorage() {
+        STORAGE.save(taskList.getTasks());
+    }
+
     private String handlePrintList() {
         return "Here are the tasks in your list:\n" + taskList;
     }
@@ -125,7 +129,7 @@ public class Dog {
         try {
             int index = Integer.parseInt(rest.trim()) - 1;
             taskList.markTask(index);
-            STORAGE.save(taskList.getTasks());
+            handleSaveTasksToStorage();
             return "WOOF! I've marked this task as done:\n " + taskList.getTask(index);
         } catch (NumberFormatException e) {
             throw new DogException("Please provide a valid task number. (e.g., 'mark 2').");
@@ -136,7 +140,7 @@ public class Dog {
         try {
             int index = Integer.parseInt(rest.trim()) - 1;
             Task deletedTask = taskList.deleteTask(index);
-            STORAGE.save(taskList.getTasks());
+            handleSaveTasksToStorage();
             return "WOOF! I've deleted this task:\n " + deletedTask
                     + "\nYou have " + taskList.size() + " tasks left in your list! WOOF!";
         } catch (NumberFormatException e) {
@@ -146,7 +150,7 @@ public class Dog {
 
     private String handleFindTasks(String rest) throws DogException {
         TaskList foundTasks = taskList.findTasks(rest);
-        STORAGE.save(taskList.getTasks());
+        handleSaveTasksToStorage();
         return "Here are the matching tasks in your list:\n" + foundTasks;
     }
 
@@ -170,7 +174,7 @@ public class Dog {
 
     private String handleAddTask(Task task) {
         taskList.addTask(task);
-        STORAGE.save(taskList.getTasks());
+        handleSaveTasksToStorage();
         return "WOOF! I've added a new task: \n" + task;
     }
 }
