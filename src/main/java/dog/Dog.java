@@ -1,5 +1,7 @@
 package dog;
 
+import java.util.Map.Entry;
+
 import dog.exceptions.DogException;
 import dog.model.Deadline;
 import dog.model.Event;
@@ -78,12 +80,13 @@ public class Dog {
             return new CommandResult("...say something? woof...", false);
         }
 
-        Command command = Command.fromInput(trimmedInput);
-        if (command == null) {
+        Entry<Command, String> parseResult = Command.fromInput(trimmedInput);
+        if (parseResult == null) {
             throw new DogException("I don't understand what you're saying :(");
         }
 
-        String rest = command.getCommandRest(trimmedInput);
+        Command command = parseResult.getKey();
+        String rest = parseResult.getValue();
         String reply;
 
         switch (command) {

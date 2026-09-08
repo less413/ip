@@ -1,5 +1,8 @@
 package dog.parser;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
 /**
  * Enum representing available commands in the Dog application.
  * Provides methods to parse and identify commands from user input.
@@ -18,31 +21,25 @@ public enum Command {
      * Parses the input string to identify the command.
      *
      * @param input The user input string.
-     * @return The matching Command enum value, or null if no match is found.
+     * @return A <code>Map.Entry</code> containing the matching Command enum (or null if no match), and the suffix.
      */
-    public static Command fromInput(String input) {
-        String lowerInput = input.toLowerCase().trim();
+    public static Entry<Command, String> fromInput(String input) {
+        String[] result = input.split(" ", 2);
+        assert result.length >= 1 : "Input parsing result must have at least length 1";
+        assert result.length <= 2 : "Input parsing result must have at most length 2";
+
+        String inputPrefix = result[0].toLowerCase();
+
         for (Command cmd : Command.values()) {
-            if (cmd.name().toLowerCase().equals(lowerInput)) {
-                return cmd;
-            }
-            if (lowerInput.startsWith(cmd.name().toLowerCase())) {
-                return cmd;
+            if (inputPrefix.equals(cmd.name().toLowerCase())) {
+                if (result.length == 1) {
+                    return Map.<Command, String>entry(cmd, "");
+                }
+                assert result.length >= 2 : "Input parsing result must have at least length 2";
+                String inputSuffix = result[1];
+                return Map.<Command, String>entry(cmd, inputSuffix);
             }
         }
         return null;
-    }
-
-    /**
-     * Extracts the rest of the input after the command name.
-     *
-     * @param input The original user input string.
-     * @return The portion of input after the command name, or empty string if no match.
-     */
-    public String getCommandRest(String input) {
-        if (!input.startsWith(this.name().toLowerCase())) {
-            return "";
-        }
-        return input.substring(this.name().length());
     }
 }
