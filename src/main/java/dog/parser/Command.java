@@ -21,7 +21,7 @@ public enum Command {
      * Parses the input string to identify the command.
      *
      * @param input The user input string.
-     * @return A <code>Map.Entry</code> containing the matching Command enum (or null if no match), and the suffix.
+     * @return A Map.Entry containing the matching Command enum and the suffix, or null if no match is found.
      */
     public static Entry<Command, String> fromInput(String input) {
         String[] result = input.split(" ", 2);
