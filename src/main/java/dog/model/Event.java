@@ -95,8 +95,8 @@ public class Event extends Task {
         final String badInputMessage = "Event tasks must have a description, a start date, and an end date!\n"
                 + "Expected: event <description> /from <start date> /to <end date>";
 
-        // Pattern: " <description> /from <from> /to <to>"
-        Pattern pattern = Pattern.compile("^\\s+(.+?)\\s+/from\\s+(.+?)\\s+/to\\s+(.+?)\\s*$");
+        // Pattern: "<description> /from <from> /to <to>"
+        Pattern pattern = Pattern.compile("^\\s*(.+?)\\s+/from\\s+(.+?)\\s+/to\\s+(.+?)\\s*$");
         Matcher matcher = pattern.matcher(input);
 
         if (!matcher.matches()) {

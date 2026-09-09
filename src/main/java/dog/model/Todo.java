@@ -73,8 +73,8 @@ public class Todo extends Task {
         final String badInputMessage = "ToDo tasks must have a description!\n"
                 + "Expected: todo <description>";
 
-        // Pattern: " <description>"
-        Pattern pattern = Pattern.compile("^\\s+(.+?)\\s*$");
+        // Pattern: "<description>"
+        Pattern pattern = Pattern.compile("^\\s*(.+?)\\s*$");
         Matcher matcher = pattern.matcher(input);
 
         if (!matcher.matches()) {

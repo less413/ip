@@ -88,8 +88,8 @@ public class Deadline extends Task {
         final String badInputMessage = "Deadline tasks must have a description and deadline!\n"
                 + "Expected: deadline <description> /by <deadline>";
 
-        // Pattern: " <description> /by <by>" where <by> is in yyyy-MM-dd format
-        Pattern pattern = Pattern.compile("^\\s+(.+?)\\s+/by\\s+(.+?)\\s*$");
+        // Pattern: "<description> /by <by>" where <by> is in yyyy-MM-dd format
+        Pattern pattern = Pattern.compile("^\\s*(.+?)\\s+/by\\s+(.+?)\\s*$");
         Matcher matcher = pattern.matcher(input);
 
         if (!matcher.matches()) {
