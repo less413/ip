@@ -46,6 +46,10 @@ public class DialogBox extends HBox {
         this.getChildren().setAll(tmp);
     }
 
+    private void applyCssStyle(String style) {
+        this.dialog.getStyleClass().add(style);
+    }
+
     public static DialogBox getUserDialog(String s, Image i) {
         return new DialogBox(s, i);
     }
@@ -53,14 +57,14 @@ public class DialogBox extends HBox {
     public static DialogBox getDogDialog(String s, Image i) {
         DialogBox db = new DialogBox(s, i);
         db.flip();
-        db.dialog.getStyleClass().add("reply-label");
+        db.applyCssStyle("reply-label");
         return db;
     }
 
     public static DialogBox getDogErrorDialog(String s, Image i) {
         DialogBox db = new DialogBox(s, i);
         db.flip();
-        db.dialog.getStyleClass().add("error-label");
+        db.applyCssStyle("error-label");
         return db;
     }
 }
