@@ -70,7 +70,7 @@ public class Todo extends Task {
      * @throws DogException if the input format is invalid.
      */
     public static Todo parse(String input) throws DogException {
-        final String badInputMessage = "ToDo tasks must have a description!\n"
+        final String badInputMessage = "ARF ARF ToDo tasks must have a description!\n"
                 + "Expected: todo <description>";
 
         // Pattern: "<description>"

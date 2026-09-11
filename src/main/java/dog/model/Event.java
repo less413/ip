@@ -92,7 +92,7 @@ public class Event extends Task {
      * @throws DogException if the input format is invalid.
      */
     public static Event parse(String input) throws DogException {
-        final String badInputMessage = "Event tasks must have a description, a start date, and an end date!\n"
+        final String badInputMessage = "ARF ARF Event tasks must have a description, a start date, and an end date!\n"
                 + "Expected: event <description> /from <start date> /to <end date>";
 
         // Pattern: "<description> /from <from> /to <to>"

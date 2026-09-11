@@ -82,7 +82,7 @@ public class Dog {
 
         Entry<Command, String> parseResult = Command.fromInput(trimmedInput);
         if (parseResult == null) {
-            throw new DogException("I don't understand what you're saying :(");
+            throw new DogException("woof...? I never learnt that command...");
         }
 
         Command command = parseResult.getKey();
@@ -125,7 +125,7 @@ public class Dog {
     }
 
     private String handlePrintList() {
-        return "Here are the tasks in your list:\n" + taskList;
+        return "WOOF! I've fetched the tasks in your list:\n" + taskList;
     }
 
     private String handleMarkTask(String rest) throws DogException {
@@ -135,7 +135,7 @@ public class Dog {
             handleSaveTasksToStorage();
             return "WOOF! I've marked this task as done:\n " + taskList.getTask(index);
         } catch (NumberFormatException e) {
-            throw new DogException("Please provide a valid task number. (e.g., 'mark 2').");
+            throw new DogException("woof...? Please give me a valid task number... (e.g., 'mark 2').");
         }
     }
 
@@ -147,14 +147,14 @@ public class Dog {
             return "WOOF! I've deleted this task:\n " + deletedTask
                     + "\nYou have " + taskList.size() + " tasks left in your list! WOOF!";
         } catch (NumberFormatException e) {
-            throw new DogException("Please provide a valid task number. (e.g., 'delete 2').");
+            throw new DogException("woof...? Please give me a valid task number... (e.g., 'delete 2').");
         }
     }
 
     private String handleFindTasks(String rest) throws DogException {
         TaskList foundTasks = taskList.findTasks(rest);
         handleSaveTasksToStorage();
-        return "Here are the matching tasks in your list:\n" + foundTasks;
+        return "WOOF! I've fetched these matching tasks from your list:\n" + foundTasks;
     }
 
     private String handleAddTodo(String rest) throws DogException {

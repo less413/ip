@@ -46,7 +46,7 @@ public class TaskList {
         try {
             return tasks.remove(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new DogException("Task index out of bounds.");
+            throw new DogException("ARF ARF Task index out of bounds.");
         }
     }
 
@@ -62,7 +62,7 @@ public class TaskList {
             assert taskToMark != null : "task to be marked should not be null";
             taskToMark.markAsDone();
         } catch (IndexOutOfBoundsException e) {
-            throw new DogException("Task index out of bounds.");
+            throw new DogException("ARF ARF Task index out of bounds.");
         }
     }
 
@@ -113,7 +113,7 @@ public class TaskList {
      */
     public TaskList findTasks(String keyword) throws DogException {
         if (keyword == null || keyword.trim().isEmpty()) {
-            throw new DogException("Please provide a search keyword. (e.g., 'find book')");
+            throw new DogException("ARF ARF Please provide a search keyword. (e.g., 'find book')");
         }
 
         TaskList foundTasks = new TaskList();
