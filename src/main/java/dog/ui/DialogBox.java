@@ -53,6 +53,14 @@ public class DialogBox extends HBox {
     public static DialogBox getDogDialog(String s, Image i) {
         DialogBox db = new DialogBox(s, i);
         db.flip();
+        db.dialog.getStyleClass().add("reply-label");
+        return db;
+    }
+
+    public static DialogBox getDogErrorDialog(String s, Image i) {
+        DialogBox db = new DialogBox(s, i);
+        db.flip();
+        db.dialog.getStyleClass().add("error-label");
         return db;
     }
 }

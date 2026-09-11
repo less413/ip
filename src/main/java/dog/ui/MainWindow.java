@@ -63,7 +63,7 @@ public class MainWindow extends AnchorPane {
             }
         } catch (DogException e) {
             String dogText = e.getMessage();
-            DialogBox errorDialogBox = DialogBox.getDogDialog(dogText, dogImage);
+            DialogBox errorDialogBox = DialogBox.getDogErrorDialog(dogText, dogImage);
             dialogContainer.getChildren().add(errorDialogBox);
         }
 
