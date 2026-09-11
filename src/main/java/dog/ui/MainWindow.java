@@ -29,6 +29,11 @@ public class MainWindow extends AnchorPane {
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/AvatarUser.png"));
     private final Image dogImage = new Image(this.getClass().getResourceAsStream("/images/AvatarDog.jpg"));
 
+    /**
+     * Initializes the main window GUI after FXML loading.
+     * Sets up a listener on the dialog container's height to auto-scroll
+     * the scroll pane to the bottom whenever new messages are added.
+     */
     @FXML
     public void initialize() {
         //Solution below adapted from https://github.com/NUS-CS2103-AY2627-S1/forum/issues/160
@@ -54,7 +59,7 @@ public class MainWindow extends AnchorPane {
         if (userText.isEmpty()) {
             return;
         }
-        
+
         DialogBox userDialogBox = DialogBox.getUserDialog(userText, userImage);
         dialogContainer.getChildren().add(userDialogBox);
 
