@@ -31,7 +31,10 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        //Solution below adapted from https://github.com/NUS-CS2103-AY2627-S1/forum/issues/160
+        dialogContainer.heightProperty().addListener((observable, oldValue, newValue) -> {
+            Platform.runLater(() -> scrollPane.setVvalue(1.0));
+        });
     }
 
     /**
