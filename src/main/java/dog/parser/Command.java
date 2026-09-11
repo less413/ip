@@ -17,7 +17,7 @@ public enum Command {
     EVENT("event", "e"),
     FIND("find", "f", "search"),
     BYE("bye", "exit", "q"),
-    WOOF("woof");
+    WOOF("woof", "arf", "bark");
 
     private static final Map<String, Command> ALIAS_MAP = buildAliasMap();
     private final String[] aliases;
