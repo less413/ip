@@ -41,16 +41,4 @@ public class DateUtils {
     public static String format(LocalDate date) {
         return date.format(OUTPUT_FORMATTER);
     }
-
-    /**
-     * Parses a date string and returns it in ISO format (yyyy-MM-dd) for storage.
-     *
-     * @param dateStr the input date string (yyyy-MM-dd).
-     * @return the date in ISO format for reliable storage.
-     * @throws DogException if the date string is invalid.
-     */
-    public static String toSaveFormat(String dateStr) throws DogException {
-        LocalDate date = parse(dateStr);
-        return date.toString(); // ISO format: yyyy-MM-dd
-    }
 }
