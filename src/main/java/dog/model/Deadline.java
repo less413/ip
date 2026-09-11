@@ -85,8 +85,8 @@ public class Deadline extends Task {
      * @throws DogException if the input format is invalid.
      */
     public static Deadline parse(String input) throws DogException {
-        final String badInputMessage = "ARF ARF Deadline tasks must have a description and deadline!\n"
-                + "Expected: deadline <description> /by <deadline>";
+        final String badInputMessage = "ARF ARF Deadline tasks must have a description and due date!\n"
+                + "Expected: deadline <description> /by <due date>";
 
         // Pattern: "<description> /by <by>" where <by> is in yyyy-MM-dd format
         Pattern pattern = Pattern.compile("^\\s*(.+?)\\s+/by\\s+(.+?)\\s*$");
