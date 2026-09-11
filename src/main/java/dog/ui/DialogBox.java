@@ -17,6 +17,9 @@ import javafx.scene.layout.HBox;
  * JavaFX node for GUI chat bubbles.
  */
 public class DialogBox extends HBox {
+    private static final String REPLY_STYLE_CLASS = "reply-label";
+    private static final String ERROR_STYLE_CLASS = "error-label";
+
     @FXML
     private Label dialog;
     @FXML
@@ -57,14 +60,14 @@ public class DialogBox extends HBox {
     public static DialogBox getDogDialog(String s, Image i) {
         DialogBox db = new DialogBox(s, i);
         db.flip();
-        db.applyCssStyle("reply-label");
+        db.applyCssStyle(REPLY_STYLE_CLASS);
         return db;
     }
 
     public static DialogBox getDogErrorDialog(String s, Image i) {
         DialogBox db = new DialogBox(s, i);
         db.flip();
-        db.applyCssStyle("error-label");
+        db.applyCssStyle(ERROR_STYLE_CLASS);
         return db;
     }
 }
