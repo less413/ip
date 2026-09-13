@@ -27,8 +27,8 @@ public class DateUtils {
         try {
             return LocalDate.parse(dateStr, INPUT_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new DogException("That doesn't seem like a valid date to me!\n"
-                    + "Expected: yyyy-MM-dd (e.g., 2019-10-15)");
+            throw new DogException("ARF ARF That's not a valid date!\n"
+                    + "Expected: yyyy-MM-dd (e.g., 2026-09-18)");
         }
     }
 
