@@ -14,6 +14,7 @@ import javafx.stage.Stage;
  * Main entry point for the Dog application.
  */
 public class Main extends Application {
+    private static final String APP_NAME = "Dog";
     private static final Dog dog = new Dog();
 
     private final Image appIcon = new Image(this.getClass().getResourceAsStream("/images/AvatarDog.jpg"));
@@ -27,7 +28,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setMinHeight(640);
             stage.setMinWidth(480);
-            stage.setTitle("im a dog woof woof");
+            stage.setTitle(APP_NAME);
             stage.getIcons().add(appIcon); // set window icon to dog image
             fxmlLoader.<MainWindow>getController().setDog(dog); // inject the Dog instance
             stage.show();
