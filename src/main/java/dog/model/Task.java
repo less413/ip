@@ -79,6 +79,10 @@ public abstract class Task {
         }
     }
 
+    public boolean getStatus() {
+        return this.isDone;
+    }
+
     /**
      * Returns a string representation of the task for saving to file.
      *
@@ -92,7 +96,7 @@ public abstract class Task {
      * @return "X" if completed, " " if not completed.
      */
     public String getStatusIcon() {
-        return (isDone ? COMPLETE_STATUS_ICON : INCOMPLETE_STATUS_ICON);
+        return (getStatus() ? COMPLETE_STATUS_ICON : INCOMPLETE_STATUS_ICON);
     }
 
     /**
