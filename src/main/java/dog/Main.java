@@ -30,7 +30,9 @@ public class Main extends Application {
             stage.setMinWidth(480);
             stage.setTitle(APP_NAME);
             stage.getIcons().add(appIcon); // set window icon to dog image
-            fxmlLoader.<MainWindow>getController().setDog(dog); // inject the Dog instance
+            MainWindow controller = fxmlLoader.<MainWindow>getController();
+            controller.setDog(dog); // inject the Dog instance
+            controller.sendWelcomeMessage(); // display greeting on start
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -42,15 +42,25 @@ public class MainWindow extends AnchorPane {
         });
     }
 
+    private void displayDialogBox(DialogBox dialogBox) {
+        dialogContainer.getChildren().add(dialogBox);
+    }
+
     /**
      * Injects the Dog instance
      */
     public void setDog(Dog d) {
-        dog = d;
+        this.dog = d;
     }
 
-    private void displayDialogBox(DialogBox dialogBox) {
-        dialogContainer.getChildren().add(dialogBox);
+    /**
+     * Sends the Dog's welcome message as the first chat bubble.
+     */
+    public void sendWelcomeMessage() {
+        assert this.dog != null : "dog should have been set before calling sendWelcomeMessage";
+        String welcomeMessage = dog.getWelcomeString();
+        DialogBox welcomeDialogBox = DialogBox.getDogDialog(welcomeMessage, dogImage);
+        displayDialogBox(welcomeDialogBox);
     }
 
     /**
@@ -59,6 +69,8 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+        assert this.dog != null : "dog should have been set before calling handleUserInput";
+
         String userText = userInput.getText();
         if (userText.isEmpty()) {
             return;
