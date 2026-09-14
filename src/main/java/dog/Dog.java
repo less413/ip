@@ -44,22 +44,22 @@ public class Dog {
     }
 
     /**
-     * Represents the result of processing a user input.
+     * Represents the response after handling a user input.
      */
-    public static class CommandResult {
-        private final String message;
+    public static class DogResponse {
+        private final String reply;
         private final boolean shouldExit;
 
         /**
-         * Constructs a new CommandResult instance.
+         * Constructs a new DogResponse instance.
          */
-        public CommandResult(String message, boolean shouldExit) {
-            this.message = message;
+        public DogResponse(String reply, boolean shouldExit) {
+            this.reply = reply;
             this.shouldExit = shouldExit;
         }
 
-        public String getMessage() {
-            return message;
+        public String getReply() {
+            return reply;
         }
 
         public boolean shouldExit() {
@@ -68,17 +68,17 @@ public class Dog {
     }
 
     /**
-     * Processes user input and returns the response message.
+     * Handles user input and returns the response message.
      *
      * @param input The raw user input string.
-     * @return The command result containing message and exit status.
+     * @return The response containing reply message and exit status.
      * @throws DogException if there's an error processing the input.
      */
-    public CommandResult processInput(String input) throws DogException {
+    public DogResponse handleUserInput(String input) throws DogException {
         String trimmedInput = input.trim();
 
         if (trimmedInput.isEmpty()) {
-            return new CommandResult("...say something? woof...", false);
+            return new DogResponse("...say something? woof...", false);
         }
 
         Entry<Command, String> parseResult = Command.fromInput(trimmedInput);
@@ -93,33 +93,33 @@ public class Dog {
         switch (command) {
             case BYE:
                 handleSaveTasksToStorage();
-                return new CommandResult(FAREWELL, true);
+                return new DogResponse(FAREWELL, true);
             case WOOF:
-                return new CommandResult(WOOF_REPLY, false);
+                return new DogResponse(WOOF_REPLY, false);
             case LIST:
                 reply = handlePrintList();
-                return new CommandResult(reply, false);
+                return new DogResponse(reply, false);
             case MARK:
                 reply = handleMarkTask(rest);
-                return new CommandResult(reply, false);
+                return new DogResponse(reply, false);
             case DELETE:
                 reply = handleDeleteTask(rest);
-                return new CommandResult(reply, false);
+                return new DogResponse(reply, false);
             case FIND:
                 reply = handleFindTasks(rest);
-                return new CommandResult(reply, false);
+                return new DogResponse(reply, false);
             case TODO:
                 reply = handleAddTodo(rest);
-                return new CommandResult(reply, false);
+                return new DogResponse(reply, false);
             case DEADLINE:
                 reply = handleAddDeadline(rest);
-                return new CommandResult(reply, false);
+                return new DogResponse(reply, false);
             case EVENT:
                 reply = handleAddEvent(rest);
-                return new CommandResult(reply, false);
+                return new DogResponse(reply, false);
             default:
                 assert false : "Unexpected command state";
-                return new CommandResult("", false);
+                return new DogResponse("", false);
         }
     }
 

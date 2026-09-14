@@ -64,9 +64,9 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().add(userDialogBox);
 
         try {
-            Dog.CommandResult result = dog.processInput(userText);
+            Dog.DogResponse result = dog.handleUserInput(userText);
 
-            String dogText = result.getMessage();
+            String dogText = result.getReply();
             DialogBox replyDialogBox = DialogBox.getDogDialog(dogText, dogImage);
             dialogContainer.getChildren().add(replyDialogBox);
 
