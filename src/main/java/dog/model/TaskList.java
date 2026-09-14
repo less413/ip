@@ -36,6 +36,21 @@ public class TaskList {
     }
 
     /**
+     * Gets a task at the specified index.
+     *
+     * @param index the index of the task (0-based).
+     * @return the task at the index.
+     * @throws DogException if index is out of bounds.
+     */
+    public Task getTask(int index) throws DogException {
+        try {
+            return tasks.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DogException("ARF ARF Task index out of bounds.");
+        }
+    }
+
+    /**
      * Deletes a task from the list at the specified index.
      *
      * @param index the index of the task to delete (0-based).
@@ -73,17 +88,6 @@ public class TaskList {
      */
     public int size() {
         return tasks.size();
-    }
-
-    /**
-     * Gets a task at the specified index.
-     *
-     * @param index the index of the task (0-based).
-     * @return the task at the index.
-     * @throws IndexOutOfBoundsException if index is out of bounds.
-     */
-    public Task getTask(int index) {
-        return tasks.get(index);
     }
 
     /**
