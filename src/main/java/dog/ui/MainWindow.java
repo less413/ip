@@ -49,6 +49,10 @@ public class MainWindow extends AnchorPane {
         dog = d;
     }
 
+    private void displayDialogBox(DialogBox dialogBox) {
+        dialogContainer.getChildren().add(dialogBox);
+    }
+
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Dog's reply and then appends them to
      * the dialog container. Clears the user input after processing.
@@ -61,14 +65,14 @@ public class MainWindow extends AnchorPane {
         }
 
         DialogBox userDialogBox = DialogBox.getUserDialog(userText, userImage);
-        dialogContainer.getChildren().add(userDialogBox);
+        displayDialogBox(userDialogBox);
 
         try {
             Dog.DogResponse result = dog.handleUserInput(userText);
 
             String dogText = result.getReply();
             DialogBox replyDialogBox = DialogBox.getDogDialog(dogText, dogImage);
-            dialogContainer.getChildren().add(replyDialogBox);
+            displayDialogBox(replyDialogBox);
 
             if (result.shouldExit()) {
                 Platform.exit();
@@ -76,7 +80,7 @@ public class MainWindow extends AnchorPane {
         } catch (DogException e) {
             String dogText = e.getMessage();
             DialogBox errorDialogBox = DialogBox.getDogErrorDialog(dogText, dogImage);
-            dialogContainer.getChildren().add(errorDialogBox);
+            displayDialogBox(errorDialogBox);
         }
 
         userInput.clear();
