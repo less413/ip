@@ -19,13 +19,6 @@ import dog.storage.Storage;
 public class Dog {
     private static final Storage STORAGE = new Storage("./data/dog.txt");
 
-    private static final String BANNER = "      _____\n"
-            + "      |  __ \\  ____   ___ _ \n"
-            + "      | |  | |/ __ \\ / __' |\n"
-            + "      | |  | | |  | | |__| |\n"
-            + "      | |__| | |__| |\\___  |\n"
-            + "      |_____/ \\____/ ____/ |\n"
-            + "                     \\____/ \n";
     private static final String GREETING = "WOOF WOOF! How can I help? WOOF";
     private static final String WOOF_REPLY = "WOOF WOOF i'm a dog WOOF WOOF";
     private static final String FAREWELL = "WOOF! Goodbye! WOOF WOOF";
@@ -40,7 +33,7 @@ public class Dog {
     }
 
     public String getWelcomeString() {
-        return BANNER + "\n" + GREETING;
+        return GREETING;
     }
 
     /**
