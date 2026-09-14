@@ -40,10 +40,12 @@ public enum Command {
     /**
      * Parses the input string to identify the command.
      *
-     * @param input The user input string.
+     * @param input The trimmed user input string.
      * @return An Entry containing the matching Command enum and the suffix string, or null if no match is found.
      */
     public static Entry<Command, String> fromInput(String input) {
+        assert input.equals(input.trim()) : "input should have been trimmed";
+
         String[] result = input.split(" ", 2);
         assert result.length >= 1 : "Input parsing result must have at least length 1";
         assert result.length <= 2 : "Input parsing result must have at most length 2";

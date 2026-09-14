@@ -68,13 +68,13 @@ public class Dog {
      * @throws DogException if there's an error processing the input.
      */
     public DogResponse handleUserInput(String input) throws DogException {
-        String trimmedInput = input.trim();
+        assert input.equals(input.trim()) : "input should have been trimmed";
 
-        if (trimmedInput.isEmpty()) {
+        if (input.isEmpty()) {
             return new DogResponse("...say something? woof...", false);
         }
 
-        Entry<Command, String> parseResult = Command.fromInput(trimmedInput);
+        Entry<Command, String> parseResult = Command.fromInput(input);
         if (parseResult == null) {
             throw new DogException("woof...? I never learnt that command...");
         }

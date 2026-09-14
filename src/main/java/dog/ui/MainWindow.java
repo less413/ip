@@ -71,7 +71,7 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         assert this.dog != null : "dog should have been set before calling handleUserInput";
 
-        String userText = userInput.getText();
+        String userText = userInput.getText().trim();
         if (userText.isEmpty()) {
             return;
         }
