@@ -69,20 +69,14 @@ public class Dog {
      */
     public DogResponse handleUserInput(String input) throws DogException {
         assert input.equals(input.trim()) : "input should have been trimmed";
+        Entry<Command, String> parsedResult = parseInput(input);
+        Command command = parsedResult.getKey();
+        String rest = parsedResult.getValue();
+        return executeCommand(command, rest);
+    }
 
-        if (input.isEmpty()) {
-            return new DogResponse("...say something? woof...", false);
-        }
-
-        Entry<Command, String> parseResult = Command.fromInput(input);
-        if (parseResult == null) {
-            throw new DogException("woof...? I never learnt that command...");
-        }
-
-        Command command = parseResult.getKey();
-        String rest = parseResult.getValue();
+    private DogResponse executeCommand(Command command, String rest) throws DogException {
         String reply;
-
         switch (command) {
             case BYE:
                 handleSaveTasksToStorage();
@@ -114,6 +108,14 @@ public class Dog {
                 assert false : "Unexpected command state";
                 return new DogResponse("", false);
         }
+    }
+
+    private Entry<Command, String> parseInput(String input) throws DogException {
+        Entry<Command, String> parseResult = Command.fromInput(input);
+        if (parseResult == null) {
+            throw new DogException("woof...? I never learnt that command...");
+        }
+        return parseResult;
     }
 
     private void handleSaveTasksToStorage() {
