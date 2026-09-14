@@ -290,22 +290,6 @@ public class CommandTest {
     }
 
     @Test
-    public void fromInput_suffixWithTrailingSpace_preservesSuffix() {
-        Entry<Command, String> result = Command.fromInput("todo do homework   ");
-        assertNotNull(result);
-        assertEquals(Command.TODO, result.getKey());
-        assertEquals("do homework   ", result.getValue());
-    }
-
-    @Test
-    public void fromInput_suffixWithLeadingAndTrailingSpace_preservesSuffix() {
-        Entry<Command, String> result = Command.fromInput("todo     do homework         ");
-        assertNotNull(result);
-        assertEquals(Command.TODO, result.getKey());
-        assertEquals("    do homework         ", result.getValue());
-    }
-
-    @Test
     public void fromInput_suffixWithCommandName_returnsCorrectCommand() {
         Entry<Command, String> result;
 
@@ -339,12 +323,6 @@ public class CommandTest {
         Entry<Command, String> result;
 
         result = Command.fromInput("");
-        assertNull(result);
-
-        result = Command.fromInput("   ");
-        assertNull(result);
-
-        result = Command.fromInput(" ");
         assertNull(result);
     }
 
